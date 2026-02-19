@@ -13,8 +13,8 @@ const App: React.FC = () => {
       <main>
         <Hero />
         <About />
-        <Experience />
         <Projects />
+        <Experience />
       </main>
       <Contact />
     </div>
