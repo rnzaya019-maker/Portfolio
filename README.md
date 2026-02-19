@@ -1,14 +1,27 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+This site is automatically deployed to GitHub Pages via GitHub Actions on every push to `main`.
+# Ariunzaya Baasanjargal — Portfolio
 
-# Run and deploy your AI Studio app
+Personal portfolio website for Ariunzaya Baasanjargal, Implementation Specialist.
 
-This contains everything you need to run your app locally.
+🌐 **Live site:** [www.ariune.com](https://www.ariune.com)
 
-View your app in AI Studio: https://ai.studio/apps/drive/1_PlIVGNA0_Oj4efk6_IfNxxIhHuhmj_y
+## Tech Stack
+
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS
+- Lucide React icons
 
 ## Run Locally
+
+**Prerequisites:** Node.js
+
+1. Install dependencies: `npm install`
+2. Run the app: `npm run dev`
+
+## Deploy
+
+is site is automatically deployed to GitHub Pages via GitHub Actions on every push to `main`.## Run Locally
 
 **Prerequisites:**  Node.js
 
