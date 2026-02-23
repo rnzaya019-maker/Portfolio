@@ -11,10 +11,10 @@ export const NAV_LINKS: NavLink[] = [
 export const EXPERIENCE_DATA: ExperienceItem[] = [
   {
     id: 'exp-1',
-    role: 'Operations & Systems Coordinator / IT Manager',
+    role: 'Operations & Technology Lead',
     company: 'Complex Home Care Solutions',
     location: 'Colorado',
-    period: 'Sep 2025 – Present',
+    period: 'Mar 2025 – Present',
     description: [
       'Built PAR Vault operations platform: client management, document versioning, supervisory visit scheduling, and caregiver compliance tracking.',
       'Developed digitized employee application with form validation and e-signature, reducing paperwork processing time by approximately 60%.',

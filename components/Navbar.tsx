@@ -5,13 +5,37 @@ import { NAV_LINKS } from '../constants';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('#home');
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = NAV_LINKS
+      .map((link) => document.querySelector(link.href))
+      .filter((section): section is HTMLElement => section instanceof HTMLElement);
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0.1 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
   const handleNavClick = (href: string) => {
@@ -24,25 +48,26 @@ const Navbar: React.FC = () => {
 
   return (
     <nav 
-      className={`fixed w-full z-50 transition-all duration-500 border-b ${
+      className={`fixed w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? 'bg-steppe-bg/95 backdrop-blur-md shadow-sm py-4 border-steppe-light/50' 
-          : 'bg-transparent py-6 border-transparent'
+          ? 'bg-steppe-bg/85 backdrop-blur-[12px] shadow-sm py-4 border-b border-steppe-light/60' 
+          : 'bg-transparent py-6 border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo/Name */}
-        <a 
-          href="#home" 
+        <a
+          href="#home"
           onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}
           className="group flex items-center gap-3"
         >
-          {/* Logo Icon using SVG directly to avoid loading issues if image missing, but styled to match */}
-          <div className="w-8 h-8 relative transition-transform duration-500 group-hover:rotate-180">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-              <path d="M50 10 L90 50 L50 90 L10 50 Z" stroke="#C05621" strokeWidth="8" />
-              <rect x="35" y="35" width="30" height="30" stroke="#2C5282" strokeWidth="6" />
-            </svg>
+          <div className="w-9 h-9 rounded-full bg-steppe-surface border border-steppe-surface-dark flex items-center justify-center transition-transform duration-300 group-hover:rotate-6">
+            <img
+              src="/assets/Ariune_Logo.png"
+              alt="Ariune logo"
+              className="w-6 h-6 object-contain"
+              loading="lazy"
+            />
           </div>
           <span className="font-serif text-xl md:text-2xl font-bold tracking-tight text-steppe-text group-hover:text-steppe-accent transition-colors">
             ARIUNE<span className="text-steppe-accent">.</span>
@@ -56,10 +81,17 @@ const Navbar: React.FC = () => {
               key={link.name}
               href={link.href}
               onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-              className="relative font-sans text-xs tracking-[0.15em] font-medium text-steppe-text uppercase hover:text-steppe-accent transition-colors py-2 group"
+              className={`relative font-sans text-xs tracking-[0.15em] font-medium uppercase transition-colors py-2 group ${
+                activeSection === link.href ? 'text-steppe-accent' : 'text-steppe-text hover:text-steppe-accent'
+              }`}
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-steppe-accent transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-steppe-accent/60 transition-all duration-300 group-hover:w-full"></span>
+              <span
+                className={`absolute -bottom-2 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-steppe-accent transition-all duration-300 ${
+                  activeSection === link.href ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+                }`}
+              />
             </a>
           ))}
         </div>

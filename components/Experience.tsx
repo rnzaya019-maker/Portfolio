@@ -1,19 +1,79 @@
-import React from 'react';
-import { EXPERIENCE_DATA, EDUCATION_DATA } from '../constants';
+import React, { useEffect, useRef } from 'react';
+import { EXPERIENCE_DATA } from '../constants';
 
 const Experience: React.FC = () => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const sectionEl = sectionRef.current;
+    if (!sectionEl) return;
+
+    const items = Array.from(sectionEl.querySelectorAll<HTMLElement>('.timeline-item'));
+    if (!items.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+    );
+
+    items.forEach((item) => observer.observe(item));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="experience" className="py-24 px-6 bg-steppe-bg relative overflow-hidden">
+    <section
+      id="experience"
+      ref={sectionRef}
+      className="py-24 px-6 bg-steppe-bg relative overflow-hidden"
+    >
+      <style>{`
+        .timeline-item {
+          opacity: 0;
+          transform: translateX(-24px);
+          transition: opacity 600ms ease, transform 600ms ease;
+          will-change: opacity, transform;
+        }
+        .timeline-item.is-visible {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        .timeline-dot.pulse {
+          animation: pulse 2.4s ease-out infinite;
+        }
+        @keyframes pulse {
+          0% { box-shadow: 0 0 0 0 rgba(192, 86, 33, 0.35); }
+          70% { box-shadow: 0 0 0 10px rgba(192, 86, 33, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(192, 86, 33, 0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .timeline-item {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+          }
+          .timeline-dot.pulse {
+            animation: none;
+          }
+        }
+      `}</style>
       {/* Background visual interest */}
-      <div className="absolute left-0 top-20 w-32 h-32 border-l-8 border-t-8 border-steppe-light rounded-tl-3xl opacity-50" />
+      <div className="absolute left-0 top-20 w-32 h-32 border-l-8 border-t-8 border-steppe-surface-dark rounded-tl-3xl opacity-60" />
       <div className="absolute right-0 bottom-20 w-32 h-32 border-r-8 border-b-8 border-steppe-accent/20 rounded-br-3xl opacity-50" />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Title Column */}
         <div className="lg:col-span-4">
           <div className="sticky top-32">
-            <span className="font-sans text-steppe-accent font-bold tracking-widest uppercase text-sm mb-2 block">Career Path</span>
-            <h2 className="font-serif text-5xl text-steppe-text mb-8 leading-tight">
+            <span className="font-sans text-steppe-accent font-semibold tracking-[0.15em] uppercase text-[0.75rem] mb-2 block">Career Path</span>
+            <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] text-steppe-text mb-8 leading-tight">
               Professional <br/> <span className="italic text-steppe-secondary">Journey</span>
             </h2>
             <p className="font-sans text-steppe-subtle leading-loose mb-8">
@@ -25,63 +85,95 @@ const Experience: React.FC = () => {
 
         {/* Timeline Column */}
         <div className="lg:col-span-8">
-          <div className="relative border-l border-steppe-subtle/30 ml-3 md:ml-6 space-y-16 py-4">
-            {EXPERIENCE_DATA.map((item) => (
-              <div key={item.id} className="relative pl-12 group">
-                {/* Custom Node: Mongolian pattern element */}
-                <div className="absolute -left-[14px] top-1 w-7 h-7 bg-steppe-bg flex items-center justify-center border border-steppe-subtle/20 rounded-full group-hover:scale-110 transition-transform duration-300">
-                  <div className="w-3 h-3 bg-steppe-accent rotate-45 rounded-sm" />
-                </div>
-                
-                <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-3">
-                  <h3 className="font-serif text-2xl text-steppe-text font-medium">{item.role}</h3>
-                  <span className="font-sans text-xs font-bold text-steppe-secondary bg-steppe-secondary/10 px-3 py-1 rounded-full mt-2 md:mt-0 w-fit">
-                    {item.period}
-                  </span>
-                </div>
-                
-                <div className="text-steppe-subtle font-medium mb-4 flex items-center gap-2">
-                   <span className="uppercase tracking-wide text-xs">{item.company}</span>
-                   <span className="w-1 h-1 bg-steppe-subtle rounded-full" />
-                   <span className="italic font-serif">{item.location}</span>
-                </div>
+          <div className="relative ml-2">
+            <div
+              className="absolute left-3 top-0 h-full w-[2px] bg-steppe-surface-dark"
+              aria-hidden="true"
+            />
+            <div className="space-y-14">
+              {EXPERIENCE_DATA.map((item, index) => {
+                const isCurrent = item.period.includes('Present');
+                return (
+                  <div
+                    key={item.id}
+                    className="timeline-item relative pl-12"
+                    style={{ transitionDelay: `${index * 120}ms` }}
+                  >
+                    <div
+                      className={`timeline-dot absolute left-1.5 top-2 h-3 w-3 rounded-full bg-steppe-accent shadow-[0_0_0_6px_rgba(192,83,58,0.15)] ${
+                        isCurrent ? 'pulse' : ''
+                      }`}
+                    />
 
-                <ul className="space-y-3">
-                  {item.description.map((desc, idx) => (
-                    <li key={idx} className="flex gap-3 text-steppe-text/80 font-sans leading-relaxed text-sm md:text-base">
-                      <span className="text-steppe-accent mt-1.5">◆</span>
-                      {desc}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+                    <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
+                      <h3 className="font-serif text-2xl md:text-3xl text-steppe-secondary font-semibold">
+                        {item.role}
+                      </h3>
+                      <span className="font-sans text-xs md:text-sm text-steppe-subtle font-semibold tracking-wide">
+                        {item.period}
+                      </span>
+                    </div>
+
+                    <div className="mt-2 flex flex-wrap items-center gap-2 text-steppe-accent font-sans text-xs">
+                      <span className="uppercase tracking-[0.18em]">{item.company}</span>
+                      <span className="w-1 h-1 bg-steppe-accent/60 rounded-full" />
+                      <span>{item.location}</span>
+                    </div>
+
+                    <ul className="mt-6 space-y-3">
+                      {item.description.map((desc, idx) => (
+                        <li
+                          key={idx}
+                          className="flex gap-3 text-steppe-text/80 font-sans leading-relaxed text-sm md:text-[0.98rem]"
+                        >
+                          <span className="text-steppe-accent mt-0.5">→</span>
+                          {desc}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Education Section - Full width container */}
-      <div className="max-w-7xl mx-auto mt-32">
+      {/* Education Section - Narrative block */}
+      <div className="max-w-5xl mx-auto mt-32">
         <div className="border-t border-steppe-light pt-16">
-          <h3 className="font-serif text-3xl text-steppe-text mb-12 text-center">Education & Qualifications</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {EDUCATION_DATA.map((edu, index) => (
-              <div key={index} className="group p-8 bg-white border border-steppe-light relative overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                {/* Decorative corner */}
-                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-steppe-light/30 to-transparent -mr-8 -mt-8 rounded-bl-full group-hover:from-steppe-accent/10 transition-colors" />
-                
-                <div className="font-sans text-xs text-steppe-secondary font-bold uppercase tracking-widest mb-4">
-                  {edu.year} {edu.status && `• ${edu.status}`}
-                </div>
-                <h4 className="font-serif text-xl text-steppe-text mb-3 leading-snug group-hover:text-steppe-accent transition-colors">
-                  {edu.degree}
-                </h4>
-                <p className="font-sans text-steppe-subtle text-sm border-t border-dashed border-steppe-light pt-3">
-                  {edu.school}
+          <h3 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-steppe-text mb-10 text-center">Education</h3>
+
+          <div className="mx-auto max-w-3xl bg-steppe-surface border border-steppe-surface-dark rounded-2xl px-8 py-10 text-center shadow-sm">
+            <div className="space-y-6">
+              <div>
+                <p className="font-serif text-xl text-steppe-text">
+                  M.S. Information Technology Management — Colorado State University Global
+                </p>
+                <p className="font-sans text-sm uppercase tracking-widest text-steppe-subtle mt-2">
+                  Expected 2027 · In Progress
                 </p>
               </div>
-            ))}
+
+              <div>
+                <p className="font-serif text-xl text-steppe-text">
+                  B.S. Management Information Systems — Columbia College, Denver CO
+                </p>
+                <p className="font-sans text-sm text-steppe-subtle mt-2">
+                  2022 – 2025 · Transitioned to graduate program after completing core MIS coursework
+                </p>
+              </div>
+
+              <div>
+                <p className="font-serif text-xl text-steppe-text">
+                  B.A. Linguistics — University of the Humanities, Mongolia · 2018
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-8 text-sm md:text-[0.98rem] italic text-steppe-accent font-light">
+              "My academic path reflects how I work: I build on what I know, redirect when a better path emerges, and keep moving forward."
+            </p>
           </div>
         </div>
       </div>

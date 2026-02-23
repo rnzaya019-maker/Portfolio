@@ -1,5 +1,4 @@
 import React from 'react';
-import PatternDivider from './PatternDivider';
 
 const About: React.FC = () => {
   return (
@@ -13,8 +12,8 @@ const About: React.FC = () => {
 
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-20">
-          <span className="text-steppe-accent font-sans text-xs uppercase tracking-[0.3em]">My Philosophy</span>
-          <h2 className="font-serif text-4xl md:text-5xl text-steppe-text mt-4 mb-6">The Human Bridge</h2>
+          <span className="text-steppe-accent font-sans text-[0.75rem] uppercase tracking-[0.15em] font-semibold">My Philosophy</span>
+          <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] text-steppe-text mt-4 mb-6">The Human Bridge</h2>
           <div className="h-1 w-24 bg-gradient-to-r from-steppe-secondary to-steppe-accent mx-auto rounded-full" />
         </div>
 
@@ -28,7 +27,7 @@ const About: React.FC = () => {
              </p>
            </div>
            
-           <div className="bg-steppe-bg p-8 border border-steppe-light rounded-xl shadow-[8px_8px_0px_0px_rgba(180,105,14,0.1)]">
+           <div className="bg-steppe-surface p-8 border border-steppe-surface-dark rounded-xl shadow-[8px_8px_0px_0px_rgba(180,105,14,0.1)]">
               <blockquote className="font-serif text-2xl text-steppe-text italic leading-relaxed text-center">
                 "Successful implementation isn't measured by deployment. It's measured by how seamlessly the tool supports the people doing the actual work."
               </blockquote>
@@ -40,24 +39,69 @@ const About: React.FC = () => {
            </div>
         </div>
 
+        <div className="mb-20">
+          <div className="mx-auto max-w-3xl bg-steppe-surface border border-steppe-surface-dark rounded-2xl p-8 shadow-[0_20px_50px_rgba(44,82,130,0.08)] relative">
+            <div className="absolute -left-2 top-8 h-12 w-1.5 bg-steppe-accent rounded-full" aria-hidden="true" />
+            <span className="block text-steppe-accent font-sans text-[0.75rem] uppercase tracking-[0.15em] font-semibold mb-3">
+              Why I Build
+            </span>
+            <blockquote className="font-serif text-xl md:text-2xl text-steppe-text leading-relaxed">
+              "I build because I've seen where operations slow teams down, creating clear, practical systems that reduce friction and help people move with confidence."
+            </blockquote>
+          </div>
+        </div>
+
+        <div className="text-center mb-6">
+          <span className="text-steppe-accent font-sans text-[0.75rem] uppercase tracking-[0.15em] font-semibold">
+            Tools are temporary. Outcomes are permanent.
+          </span>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { title: "Technical", skills: ["Python & FastAPI", "React & TypeScript", "PostgreSQL & SQL", "Docker & Git"], color: "border-l-4 border-steppe-secondary" },
-            { title: "Operations", skills: ["Process Design", "Compliance Mgmt", "Training Development", "Documentation"], color: "border-l-4 border-steppe-accent" },
-            { title: "Domain", skills: ["Healthcare IT", "HIPAA Compliance", "AI Tool Implementation", "Prompt Engineering"], color: "border-l-4 border-steppe-red" }
+            {
+              title: "I Build With",
+              skills: ["Python & FastAPI", "React & TypeScript", "PostgreSQL & SQL", "Docker & Git"],
+              color: "border-l-4 border-steppe-secondary"
+            },
+            {
+              title: "I Operate In",
+              skills: [
+                "Process Design & Optimization",
+                "Compliance Management (HIPAA)",
+                "Training & Documentation",
+                "Workflow Digitalization"
+              ],
+              color: "border-l-4 border-steppe-accent"
+            },
+            {
+              title: "I Specialize In",
+              skills: [
+                "Healthcare IT Systems",
+                "AI Tool Implementation",
+                "Prompt Engineering",
+                "Implementation Planning"
+              ],
+              color: "border-l-4 border-steppe-red"
+            }
           ].map((area, idx) => (
-            <div key={idx} className={`p-8 bg-steppe-bg hover:bg-white transition-colors duration-300 shadow-sm hover:shadow-md ${area.color}`}>
+            <div
+              key={idx}
+              className={`p-8 bg-steppe-surface hover:bg-white transition-colors duration-300 shadow-sm hover:shadow-[0_18px_40px_rgba(28,43,74,0.12)] ${area.color}`}
+            >
               <h3 className="font-serif text-xl mb-6 text-steppe-text flex items-center gap-2">
                 {area.title}
               </h3>
-              <ul className="space-y-3 font-sans text-sm text-steppe-subtle">
+              <div className="flex flex-wrap gap-2 font-sans text-sm text-steppe-subtle">
                 {area.skills.map((skill, sIdx) => (
-                  <li key={sIdx} className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 bg-steppe-light rounded-full"></div>
+                  <span
+                    key={sIdx}
+                    className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-steppe-surface border border-steppe-surface-dark text-steppe-secondary font-medium transition-all duration-200 hover:bg-steppe-secondary hover:text-white hover:border-steppe-secondary hover:-translate-y-0.5"
+                  >
                     {skill}
-                  </li>
+                  </span>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -77,7 +121,6 @@ const About: React.FC = () => {
                                                                                                                                                                       </a>
                                                                                                                                                                               </div>
       </div>
-      <PatternDivider />
     </section>
   );
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import PatternDivider from './PatternDivider';
 
 const Projects: React.FC = () => {
   return (
@@ -10,92 +9,73 @@ const Projects: React.FC = () => {
 
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-24">
-          <h2 className="font-serif text-5xl text-steppe-text mb-6">Solutions Architecture</h2>
+          <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] text-steppe-text mb-6">Solutions Architecture</h2>
           <p className="font-sans text-steppe-subtle max-w-xl mx-auto text-lg">
             Bridging the gap between operational needs and technical capabilities.
           </p>
         </div>
 
-        <div className="space-y-12">
-          
-          {/* Project 1: PAR Vault */}
-          <div className="group">
-             <div className="flex items-center gap-4 mb-8">
-                <div className="h-px bg-steppe-accent flex-grow opacity-30"></div>
-                <h3 className="font-serif text-3xl text-steppe-text text-center px-4">LIVE DEMO: PAR Vault </h3>
-                <div className="h-px bg-steppe-accent flex-grow opacity-30"></div>
-             </div>
-             
-             <div className="relative bg-steppe-bg p-2 rounded-2xl border border-steppe-light shadow-sm group-hover:shadow-xl transition-all duration-500">
-                {/* Decorative Top Bar */}
-                <div className="h-2 w-full bg-gradient-to-r from-steppe-secondary via-steppe-light to-steppe-secondary rounded-t-xl mb-1 opacity-50" />
-                
-                <div className="aspect-video w-full relative overflow-hidden rounded-xl bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            {
+              title: 'PAR Vault',
+              category: 'Full Stack',
+              description:
+                'A React + FastAPI operations platform built for healthcare compliance with audit logging, role-based access, and document versioning.',
+              link: 'https://rnzaya019-maker.github.io/PAR_Vault_Demo/',
+              cta: 'Live Demo →',
+              gradient: 'from-steppe-secondary via-steppe-secondary to-steppe-accent/80',
+              embed: 'https://rnzaya019-maker.github.io/PAR_Vault_Demo/'
+            },
+            {
+              title: 'Workflow Digitalization',
+              category: 'Process Engineering',
+              description:
+                'Digitized workflow system that reduced processing time by 60%, highlighting logic mapping, validation, and user-centered design.',
+              link:
+                'https://na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhCK6xE1Fy8MIz0qFfkz77HBBLVStxd8MqbBVV5b76Q6BhpSSVZTCxO0hkBQv5Pb1Mk*&hosted=false',
+              cta: 'Case Study →',
+              gradient: 'from-steppe-red via-steppe-secondary/70 to-steppe-accent/70',
+              embed:
+                'https://na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhCK6xE1Fy8MIz0qFfkz77HBBLVStxd8MqbBVV5b76Q6BhpSSVZTCxO0hkBQv5Pb1Mk*&hosted=false'
+            }
+          ].map((project) => (
+            <div
+              key={project.title}
+              className="group rounded-[20px] border border-steppe-surface-dark bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_60px_rgba(28,43,74,0.16)] motion-reduce:transform-none motion-reduce:transition-none"
+            >
+              <div className="relative w-full overflow-hidden rounded-t-[20px] bg-steppe-bg">
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-30 pointer-events-none`} />
+                <div className="absolute inset-0 bg-lattice-pattern opacity-5 pointer-events-none" />
+                <div className="relative aspect-video w-full">
                   <iframe
-                    src="https://rnzaya019-maker.github.io/PAR_Vault_Demo/"
-                    title="PAR Vault Demo"
-                    className="w-full h-full border-0"
+                    src={project.embed}
+                    title={`${project.title} Preview`}
+                    className="absolute inset-0 h-full w-full border-0"
                     loading="lazy"
                   ></iframe>
                 </div>
-             </div>
-             
-             <div className="flex justify-between items-start mt-6 px-2">
-                <div className="max-w-2xl">
-                    <p className="font-sans text-steppe-subtle leading-relaxed">
-                      A comprehensive React & FastAPI operations platform designed for healthcare compliance. 
-                      Features audit logging, role-based access, and document versioning.
-                    </p>
-                </div>
-                <span className="hidden md:block font-serif italic text-steppe-secondary text-sm">Full Stack Development</span>
-             </div>
-          </div>
+                <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-sans uppercase tracking-widest text-steppe-secondary shadow-sm">
+                  {project.category}
+                </span>
+              </div>
 
-          {/* Decorative Spacer between projects */}
-          <div className="flex justify-center opacity-40">
-             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="18" y="0" width="4" height="40" fill="#b4690e"/>
-                <rect x="0" y="18" width="40" height="4" fill="#b4690e"/>
-                <circle cx="20" cy="20" r="8" stroke="#b4690e" strokeWidth="2" fill="white"/>
-             </svg>
-          </div>
-
-          {/* Project 2: Adobe Widget */}
-          <div className="group">
-             <div className="flex items-center gap-4 mb-8">
-                <div className="h-px bg-steppe-accent flex-grow opacity-30"></div>
-                <h3 className="font-serif text-3xl text-steppe-text text-center px-4">The Logic: Workflow Digitalization </h3>
-                <div className="h-px bg-steppe-accent flex-grow opacity-30"></div>
-             </div>
-             
-             <div className="relative bg-steppe-bg p-2 rounded-2xl border border-steppe-light shadow-sm group-hover:shadow-xl transition-all duration-500">
-                {/* Decorative Top Bar */}
-                <div className="h-2 w-full bg-gradient-to-r from-steppe-red via-steppe-light to-steppe-red rounded-t-xl mb-1 opacity-50" />
-
-                <div className="aspect-[4/3] md:aspect-video w-full relative overflow-hidden rounded-xl bg-white">
-                   <iframe 
-                    src="https://na3.documents.adobe.com/public/esignWidget?wid=CBFCIBAA3AAABLblqZhCK6xE1Fy8MIz0qFfkz77HBBLVStxd8MqbBVV5b76Q6BhpSSVZTCxO0hkBQv5Pb1Mk*&hosted=false" 
-                    className="w-full h-full border-0"
-                    title="Adobe Acrobat Pro Form"
-                    loading="lazy"
-                  ></iframe>
-                </div>
-             </div>
-
-             <div className="flex justify-between items-start mt-6 px-2">
-                <div className="max-w-2xl">
-                    <p className="font-sans text-steppe-subtle leading-relaxed">
-                      Digitized workflow solution reducing processing time by 60%. 
-                      Demonstrates logic mapping, form validation, and user experience design in a no-code environment.
-                    </p>
-                </div>
-                <span className="hidden md:block font-serif italic text-steppe-red text-sm">Process Engineering</span>
-             </div>
-          </div>
-
+              <div className="p-6">
+                <h3 className="font-serif text-2xl text-steppe-text mb-3">{project.title}</h3>
+                <p className="font-sans text-steppe-subtle leading-relaxed mb-6">{project.description}</p>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-steppe-accent font-sans text-sm uppercase tracking-widest hover:text-steppe-secondary transition-colors"
+                >
+                  {project.cta}
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      <PatternDivider />
     </section>
   );
 };
