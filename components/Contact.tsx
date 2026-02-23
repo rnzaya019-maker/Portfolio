@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/10 text-xs text-steppe-light/40 font-sans uppercase tracking-widest">
-          © {new Date().getFullYear()} Ariunzaya Baasanjargal. Built with the Modern Steppe Design System.
+          © {new Date().getFullYear()} Ariunzaya Baasanjargal.
         </div>
       </div>
     </footer>
