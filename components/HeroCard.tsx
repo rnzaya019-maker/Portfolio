@@ -14,7 +14,7 @@ const HeroCard: React.FC<HeroCardProps> = ({ title, subtitle, className = '', st
 
   return (
     <div
-      className={`relative w-full max-w-sm rounded-2xl px-6 py-5 text-white shadow-[0_20px_60px_rgba(28,43,74,0.15)] ${className}`}
+      className={`relative w-full max-w-sm min-h-[160px] rounded-2xl px-6 py-6 text-white shadow-[0_20px_60px_rgba(28,43,74,0.15)] ${className}`}
       style={{ ...baseStyle, ...style }}
     >
       <div className="absolute right-6 top-5 h-2.5 w-2.5 rounded-full bg-steppe-accent" />

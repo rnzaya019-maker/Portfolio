@@ -96,6 +96,18 @@ const Navbar: React.FC = () => {
           ))}
         </div>
 
+        {/* Desktop Resume Button */}
+        <div className="hidden md:flex items-center">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-6 inline-flex items-center rounded-full bg-steppe-secondary px-6 py-2.5 text-xs font-sans uppercase tracking-[0.2em] text-white shadow-sm transition-all duration-300 hover:bg-steppe-text"
+          >
+            Resume
+          </a>
+        </div>
+
         {/* Mobile Menu Button */}
         <button 
           className="md:hidden text-steppe-text hover:text-steppe-accent transition-colors"
@@ -107,16 +119,24 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Nav Overlay */}
       <div className={`fixed inset-0 bg-steppe-bg z-40 transform transition-transform duration-300 md:hidden flex flex-col items-center justify-center space-y-8 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
-              className="font-serif text-3xl text-steppe-text hover:text-steppe-accent transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
+        {NAV_LINKS.map((link) => (
+          <a
+            key={link.name}
+            href={link.href}
+            onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+            className="font-serif text-3xl text-steppe-text hover:text-steppe-accent transition-colors"
+          >
+            {link.name}
+          </a>
+        ))}
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center rounded-full bg-steppe-secondary px-8 py-3 text-xs font-sans uppercase tracking-[0.2em] text-white shadow-sm transition-all duration-300 hover:bg-steppe-text"
+        >
+          Resume
+        </a>
       </div>
     </nav>
   );

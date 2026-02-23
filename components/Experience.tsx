@@ -139,44 +139,6 @@ const Experience: React.FC = () => {
         </div>
       </div>
 
-      {/* Education Section - Narrative block */}
-      <div className="max-w-5xl mx-auto mt-32">
-        <div className="border-t border-steppe-light pt-16">
-          <h3 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-steppe-text mb-10 text-center">Education</h3>
-
-          <div className="mx-auto max-w-3xl bg-steppe-surface border border-steppe-surface-dark rounded-2xl px-8 py-10 text-center shadow-sm">
-            <div className="space-y-6">
-              <div>
-                <p className="font-serif text-xl text-steppe-text">
-                  M.S. Information Technology Management — Colorado State University Global
-                </p>
-                <p className="font-sans text-sm uppercase tracking-widest text-steppe-subtle mt-2">
-                  Expected 2027 · In Progress
-                </p>
-              </div>
-
-              <div>
-                <p className="font-serif text-xl text-steppe-text">
-                  B.S. Management Information Systems — Columbia College, Denver CO
-                </p>
-                <p className="font-sans text-sm text-steppe-subtle mt-2">
-                  2022 – 2025 · Transitioned to graduate program after completing core MIS coursework
-                </p>
-              </div>
-
-              <div>
-                <p className="font-serif text-xl text-steppe-text">
-                  B.A. Linguistics — University of the Humanities, Mongolia · 2018
-                </p>
-              </div>
-            </div>
-
-            <p className="mt-8 text-sm md:text-[0.98rem] italic text-steppe-accent font-light">
-              "My academic path reflects how I work: I build on what I know, redirect when a better path emerges, and keep moving forward."
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };

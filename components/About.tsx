@@ -40,21 +40,24 @@ const About: React.FC = () => {
         </div>
 
         <div className="mb-20">
-          <div className="mx-auto max-w-3xl bg-steppe-surface border border-steppe-surface-dark rounded-2xl p-8 shadow-[0_20px_50px_rgba(44,82,130,0.08)] relative">
+          <div className="mx-auto max-w-3xl bg-steppe-secondary border border-steppe-secondary rounded-2xl p-8 shadow-[0_20px_50px_rgba(28,43,74,0.2)] relative">
             <div className="absolute -left-2 top-8 h-12 w-1.5 bg-steppe-accent rounded-full" aria-hidden="true" />
             <span className="block text-steppe-accent font-sans text-[0.75rem] uppercase tracking-[0.15em] font-semibold mb-3">
               Why I Build
             </span>
-            <blockquote className="font-serif text-xl md:text-2xl text-steppe-text leading-relaxed">
+            <blockquote className="font-serif text-xl md:text-2xl text-white italic leading-relaxed">
               "I build because I've seen where operations slow teams down, creating clear, practical systems that reduce friction and help people move with confidence."
             </blockquote>
           </div>
         </div>
 
-        <div className="text-center mb-6">
-          <span className="text-steppe-accent font-sans text-[0.75rem] uppercase tracking-[0.15em] font-semibold">
+        <div className="text-center mb-12">
+          <span className="text-steppe-accent font-sans text-[0.75rem] uppercase tracking-[0.2em] font-semibold">
             Tools are temporary. Outcomes are permanent.
           </span>
+          <h3 className="mt-4 font-serif text-[clamp(2rem,3.6vw,3.25rem)] text-steppe-secondary">
+            Core Competencies
+          </h3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -87,16 +90,19 @@ const About: React.FC = () => {
           ].map((area, idx) => (
             <div
               key={idx}
-              className={`p-8 bg-steppe-surface hover:bg-white transition-colors duration-300 shadow-sm hover:shadow-[0_18px_40px_rgba(28,43,74,0.12)] ${area.color}`}
+              className="p-6 md:p-8 bg-transparent"
             >
-              <h3 className="font-serif text-xl mb-6 text-steppe-text flex items-center gap-2">
-                {area.title}
-              </h3>
-              <div className="flex flex-wrap gap-2 font-sans text-sm text-steppe-subtle">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="h-2.5 w-2.5 rounded-full bg-steppe-accent" />
+                <h3 className="font-serif text-xl text-steppe-secondary">
+                  {area.title}
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-3 font-sans text-sm text-steppe-secondary">
                 {area.skills.map((skill, sIdx) => (
                   <span
                     key={sIdx}
-                    className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-steppe-surface border border-steppe-surface-dark text-steppe-secondary font-medium transition-all duration-200 hover:bg-steppe-secondary hover:text-white hover:border-steppe-secondary hover:-translate-y-0.5"
+                    className="inline-flex items-center px-4 py-2 rounded-full bg-steppe-surface border border-steppe-surface-dark text-steppe-secondary font-medium transition-all duration-200 hover:bg-steppe-secondary hover:text-white hover:border-steppe-secondary hover:-translate-y-0.5"
                   >
                     {skill}
                   </span>
@@ -104,6 +110,57 @@ const About: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-12 flex items-center justify-center gap-6 text-steppe-accent/70">
+          <div className="hidden md:block h-px w-28 bg-steppe-surface-dark" />
+          <div className="flex items-center gap-3">
+            <span className="h-1.5 w-1.5 rotate-45 bg-steppe-accent" />
+            <span className="h-1.5 w-1.5 rotate-45 bg-steppe-accent" />
+            <span className="h-1.5 w-1.5 rotate-45 bg-steppe-accent" />
+          </div>
+          <div className="hidden md:block h-px w-28 bg-steppe-surface-dark" />
+        </div>
+
+        {/* Education Section - Narrative block */}
+        <div className="max-w-5xl mx-auto mt-20">
+          <div className="border-t border-steppe-surface-dark pt-12">
+            <h3 className="font-serif text-[clamp(2rem,4vw,3.25rem)] text-steppe-secondary mb-10 text-center">
+              Education
+            </h3>
+
+            <div className="mx-auto max-w-3xl bg-steppe-surface border border-steppe-surface-dark rounded-2xl px-8 py-10 text-center shadow-sm">
+              <div className="space-y-6">
+                <div>
+                  <p className="font-serif text-xl text-steppe-text">
+                    M.S. Information Technology Management — Colorado State University Global
+                  </p>
+                  <p className="font-sans text-sm uppercase tracking-widest text-steppe-subtle mt-2">
+                    Expected 2027 · In Progress
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-serif text-xl text-steppe-text">
+                    B.S. Management Information Systems — Columbia College, Denver CO
+                  </p>
+                  <p className="font-sans text-sm text-steppe-subtle mt-2">
+                    2022 – 2025 · Transitioned to graduate program after completing core MIS coursework
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-serif text-xl text-steppe-text">
+                    B.A. Linguistics — University of the Humanities, Mongolia · 2018
+                  </p>
+                </div>
+              </div>
+
+              <p className="mt-8 text-sm md:text-[0.98rem] italic text-steppe-accent font-light">
+                "My academic path reflects how I work: I build on what I know, redirect when a better path emerges, and keep moving forward."
+              </p>
+            </div>
+          </div>
         </div>
                 {/* Resume Button */}
                         <div className="flex justify-center mt-12">

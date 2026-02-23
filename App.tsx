@@ -16,9 +16,9 @@ const App: React.FC = () => {
         <PatternDivider />
         <About />
         <PatternDivider />
-        <Projects />
-        <PatternDivider />
         <Experience />
+        <PatternDivider />
+        <Projects />
       </main>
       <Contact />
     </div>

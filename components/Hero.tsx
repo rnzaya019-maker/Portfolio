@@ -116,25 +116,23 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Hero Card Stack */}
-        <div className="order-1 md:order-2 h-[420px] md:h-[560px] w-full flex items-center justify-center">
-          <div className="relative w-full max-w-md h-full flex items-center justify-center">
+        {/* Right: Hero Card Column */}
+        <div className="order-1 md:order-2 w-full flex items-center justify-center">
+          <div className="w-full max-w-md flex flex-col gap-5 items-center md:items-end">
             <HeroCard
               title="PAR Vault"
               subtitle="Operations Platform · React + FastAPI"
-              className="absolute z-30"
+              className="w-full"
             />
             <HeroCard
               title="Workflow Digitalization"
               subtitle="60% faster processing · No-code + custom logic"
-              className="absolute z-20"
-              style={{ transform: 'translate(18px, 26px) rotate(-4deg)' }}
+              className="w-full"
             />
             <HeroCard
               title="HIPAA Compliance System"
               subtitle="Audit logging · Role-based access"
-              className="absolute z-10"
-              style={{ transform: 'translate(36px, 52px) rotate(-8deg)' }}
+              className="w-full"
             />
           </div>
         </div>
