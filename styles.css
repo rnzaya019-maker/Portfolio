@@ -264,90 +264,64 @@ body::after {
 .btn-primary:hover { background: var(--navy-deep); transform: translateY(-1px); box-shadow: 0 10px 24px -10px rgba(28,58,110,0.5); }
 .btn-ghost { background: transparent; color: var(--ink); }
 .btn-ghost:hover { background: var(--ice); border-color: var(--sky); }
+.btn-resume {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+.btn-resume::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+  animation: btn-shimmer 2.6s ease-in-out infinite;
+}
+@keyframes btn-shimmer {
+  0%      { left: -100%; }
+  55%, 100% { left: 155%; }
+}
+.btn-resume:hover {
+  background: #f0ca30;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -10px rgba(245,213,71,0.65);
+}
 
-/* === HERO RIGHT — 3D mascot stage === */
+/* === HERO RIGHT — video stage === */
 .hero-stage {
   position: relative;
-  height: 580px;
-  perspective: 1400px;
-  perspective-origin: 50% 40%;
-}
-.hero-stage .platform {
-  position: absolute;
-  bottom: 6%;
-  left: 50%;
-  width: 78%;
-  height: 60%;
-  transform: translateX(-50%) rotateX(72deg);
-  background: radial-gradient(ellipse at center, rgba(127,197,232,0.4), transparent 70%);
-  filter: blur(4px);
-}
-.hero-stage .ring {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 70%; aspect-ratio: 1;
-  transform: translate(-50%, -50%) rotateX(70deg) rotateZ(0deg);
-  border: 2px dashed var(--sky);
-  border-radius: 50%;
-  opacity: 0.55;
-  animation: ring-spin 30s linear infinite;
-}
-.hero-stage .ring.r2 {
-  width: 88%;
-  border-style: solid;
-  border-color: var(--gold);
-  opacity: 0.35;
-  animation-direction: reverse;
-  animation-duration: 50s;
-}
-@keyframes ring-spin {
-  to { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(360deg); }
+  overflow: visible;
+  align-self: center;
 }
 
-.mascot-wrap {
-  position: absolute;
-  inset: 0;
-  display: grid; place-items: center;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-.mascot-img {
-  width: 78%;
-  max-width: 460px;
-  filter: drop-shadow(0 32px 32px rgba(28,58,110,0.22)) drop-shadow(0 6px 8px rgba(28,58,110,0.12));
-  animation: mascot-float 6s ease-in-out infinite;
-  transform-origin: center 80%;
-}
-@keyframes mascot-float {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-18px) rotate(1deg); }
+.video-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
 }
 
-/* Floating sticker chips around mascot */
-.chip {
-  position: absolute;
-  display: flex; align-items: center; gap: 8px;
-  background: var(--cream);
-  border: 1px solid var(--line);
-  padding: 9px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 500;
-  box-shadow: 0 12px 28px -14px rgba(28,58,110,0.4);
-  transform-style: preserve-3d;
-  white-space: nowrap;
+.video-stage-video {
+  display: block;
+  width: 115%;
+  margin-left: -15%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  /* 4-sided edge diffusion: intersect horizontal + vertical linear gradients */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-composite: destination-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-composite: intersect;
 }
-.chip .ic {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  display: grid; place-items: center;
-  font-size: 11px;
-  color: var(--cream);
-}
-.chip-1 { top: 18%; left: -6%; animation: float-a 7s ease-in-out infinite; }
-.chip-2 { top: 8%; right: -2%; animation: float-b 8s ease-in-out infinite; }
-.chip-3 { bottom: 24%; left: -10%; animation: float-c 9s ease-in-out infinite; }
-.chip-4 { bottom: 12%; right: 0%; animation: float-a 7.5s ease-in-out infinite reverse; }
+
+/* Sparkle / heart float animations (used by both video-stage overlays and old stage) */
 @keyframes float-a {
   0%, 100% { transform: translate(0, 0) rotate(-3deg); }
   50% { transform: translate(8px, -14px) rotate(2deg); }
@@ -941,7 +915,7 @@ footer {
 /* ============ Responsive ============ */
 @media (max-width: 1100px) {
   .hero { grid-template-columns: 1fr; padding-top: 110px; }
-  .hero-stage { height: 480px; order: -1; }
+  .hero-stage { order: -1; }
   .project-hero { grid-template-columns: 1fr; }
   .feature-grid { grid-template-columns: repeat(2, 1fr); }
   .skills-grid { grid-template-columns: 1fr; }
@@ -1056,15 +1030,6 @@ footer {
   to   { opacity: 1; transform: translateY(0);    }
 }
 
-/* ============ EXTRA RING (r3) ============ */
-.hero-stage .ring.r3 {
-  width: 106%;
-  border-style: dashed;
-  border-color: var(--pink);
-  opacity: 0.22;
-  animation-direction: normal;
-  animation-duration: 72s;
-}
 
 /* ============ MARQUEE SVG STARS ============ */
 .marquee-item.star {

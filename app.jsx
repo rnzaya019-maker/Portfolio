@@ -54,6 +54,15 @@ function StarIcon() {
   );
 }
 
+function DownloadIcon({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3v13M7 11l5 5 5-5"/>
+      <path d="M4 19h16"/>
+    </svg>
+  );
+}
+
 /* ── Scattered particles across the full hero ───────────── */
 function FloatingParticles() {
   const items = [
@@ -89,61 +98,20 @@ function FloatingParticles() {
   );
 }
 
-/* ── Mascot with 3-D mouse tilt ─────────────────────────── */
-function MascotStage() {
-  const wrapRef = useRef(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const onMove = (e) => {
-      if (!wrapRef.current) return;
-      const r = wrapRef.current.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width  / 2)) / r.width;
-      const dy = (e.clientY - (r.top  + r.height / 2)) / r.height;
-      setTilt({ x: dx * 16, y: dy * -10 });
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-
+/* ── Video stage — hero right panel ─────────────────────── */
+function VideoStage() {
   return (
-    <div className="hero-stage">
-      <div className="ring" />
-      <div className="ring r2" />
-      <div className="ring r3" />
-      <div className="platform" />
-      <div
-        ref={wrapRef}
-        className="mascot-wrap"
-        style={{
-          transform: `rotateY(${tilt.x}deg) rotateX(${tilt.y}deg)`,
-          transition: "transform 0.4s cubic-bezier(0.2,0.8,0.2,1)",
-        }}
-      >
-        <img className="mascot-img" src="assets/mascot.png" alt="Parco the cow mascot" />
-      </div>
+    <div className="hero-stage video-stage">
+      <video
+        className="video-stage-video"
+        src="public/assets/parcovo_hero_video.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
 
-      {/* Floating chips — SVG icons instead of emoji/text symbols */}
-      <div className="chip chip-1">
-        <span className="ic" style={{ background: "#2BA76A" }}><CheckIcon /></span>
-        HIPAA-compliant
-      </div>
-      <div className="chip chip-2">
-        <span className="ic" style={{ background: "#1C3A6E" }}>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", fontWeight: 700, color: "#fff" }}>22</span>
-        </span>
-        modules shipped
-      </div>
-      <div className="chip chip-3">
-        <span className="ic" style={{ background: "#C0533A" }}><AlertIcon /></span>
-        Live at agency
-      </div>
-      <div className="chip chip-4">
-        <span className="ic" style={{ background: "#D4A853" }}><StarIcon /></span>
-        Best-in-KLAS energy
-      </div>
-
-      {/* Sparkles, hearts, diamonds */}
+      {/* Sparkles, hearts, diamonds overlaid on video */}
       <div className="sparkle" style={{ top: "12%", left: "18%" }}>
         <Sparkle size={28} />
       </div>
@@ -207,6 +175,7 @@ function App() {
         <a href="#about">About</a>
         <a href="#parcovo">PARCOVO</a>
         <a href="#experience">Experience</a>
+        <a href="public/resume_ariunzaya.pdf" download="Ariunzaya_Baasanjargal_Resume.pdf" style={{ color: "var(--navy)", fontWeight: 600 }}>Resume ↓</a>
         <a href="#contact" className="cta">Get in touch ↗</a>
       </nav>
 
@@ -266,13 +235,20 @@ function App() {
             <a className="btn btn-primary" href="#parcovo">
               See PARCOVO <span aria-hidden>→</span>
             </a>
+            <a
+              className="btn btn-resume"
+              href="public/resume_ariunzaya.pdf"
+              download="Ariunzaya_Baasanjargal_Resume.pdf"
+            >
+              <DownloadIcon size={15} /> Resume
+            </a>
             <a className="btn btn-ghost" href="#contact">
               rn.zaya019@gmail.com
             </a>
           </div>
         </div>
 
-        <MascotStage />
+        <VideoStage />
       </section>
 
       {/* MARQUEE */}
@@ -642,6 +618,16 @@ function App() {
                 <span className="k">Site</span>
                 <span className="v">ariune.com</span>
                 <span className="arr">↗</span>
+              </a>
+              <a
+                className="contact-row"
+                href="public/resume_ariunzaya.pdf"
+                download="Ariunzaya_Baasanjargal_Resume.pdf"
+                style={{ borderBottom: "none", marginTop: 8 }}
+              >
+                <span className="k">Resume</span>
+                <span className="v" style={{ color: "var(--gold)" }}>Download PDF</span>
+                <span className="arr" style={{ color: "var(--gold)" }}>↓</span>
               </a>
             </div>
           </div>
