@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local session context files (not for public repo)
+axiscare_case_study_context.md

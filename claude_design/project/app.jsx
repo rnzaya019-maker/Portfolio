@@ -88,7 +88,7 @@ function FloatingParticles() {
         key={i}
         className="float-particle"
         style={{ top: p.top, left: p.left, animationDelay: p.delay, animationDuration: p.dur }}>
-
+        
           {p.type === "sparkle" && <Sparkle size={p.size} color={p.color} />}
           {p.type === "heart" && <Heart size={p.size} color={p.color} />}
           {p.type === "diamond" && <Diamond size={p.size} color={p.color} />}
@@ -98,22 +98,19 @@ function FloatingParticles() {
 
 }
 
-/* ── Hero video stage — 4-sided smudge blur walls ── */
+/* ── Hero video stage — softly diffused edges, layered behind cube ── */
 function HeroVideo() {
   return (
     <div className="hero-video-wrap" aria-hidden>
       <video
         className="hero-video"
-        src="public/assets/parcovo_hero_video.mp4"
+        src="assets/parcovo_hero_video.mp4"
         autoPlay
         muted
         loop
         playsInline
       />
-      <div className="hvid-edge hvid-top" />
-      <div className="hvid-edge hvid-bottom" />
-      <div className="hvid-edge hvid-left" />
-      <div className="hvid-edge hvid-right" />
+      <div className="hero-video-tint" />
     </div>
   );
 }
@@ -162,12 +159,12 @@ function HeroStage3D() {
       className="hero-stage cube-stage"
       onMouseMove={onMove}
       onMouseLeave={onLeave}>
-
+      
       <div className="cube-floor" aria-hidden />
       <div
         className="cube"
         style={{ transform: `rotateX(${rot.x}deg) rotateY(${rot.y}deg)` }}>
-
+        
         {faces.map((f, i) =>
         <div key={i} className={`cube-face f-${i}`} style={{ transform: f.tf, background: f.bg }}>
             <div className="face-inner">
@@ -274,8 +271,7 @@ function App() {
         <a href="#letter">Cover letter</a>
         <a
           href="assets/Ariunzaya_Baasanjargal_Resume.pdf"
-          target="_blank"
-          rel="noreferrer"
+          download="Ariunzaya_Baasanjargal_Resume.pdf"
           className="nav-resume"
         >
           <DownloadIcon size={13} /> Résumé
@@ -302,7 +298,7 @@ function App() {
             Currently shipping at a live home care agency
           </div>
           <h1>
-            <span className="accent">Product Manager</span><br />
+            <span className="accent">Senior Product Manager</span><br />
             who built the <span className="underline">whole&nbsp;cow</span>,<br />
             not just the&nbsp;moo.
           </h1>
@@ -341,15 +337,14 @@ function App() {
             <a
               className="btn btn-resume btn-resume-xl"
               href="assets/Ariunzaya_Baasanjargal_Resume.pdf"
-              target="_blank"
-              rel="noreferrer"
+              download="Ariunzaya_Baasanjargal_Resume.pdf"
             >
               <DownloadIcon size={17} />
               <span className="btn-stack">
-                <span className="btn-main">View résumé</span>
-                <span className="btn-sub">PDF · view &amp; print</span>
+                <span className="btn-main">Download résumé</span>
+                <span className="btn-sub">PDF · 1 page</span>
               </span>
-              <span className="btn-arrow" aria-hidden>↗</span>
+              <span className="btn-arrow" aria-hidden>↓</span>
             </a>
             <a className="btn btn-primary" href="#parcovo">
               See PARCOVO <span aria-hidden>→</span>
@@ -423,8 +418,8 @@ function App() {
           <div className="about-card">
             <h3>Quick facts</h3>
             <p><strong>Based in</strong> Denver, CO · U.S. Permanent Resident</p>
-            <p><strong>Studying</strong> M.S. Information Technology Management, CSU Global (Expected 2027)</p>
-            <p><strong>Education</strong> B.S. Management Information Systems + B.A. Linguistics, Columbia College — Denver, CO · 2022–2025</p>
+            <p><strong>Studying</strong> M.S. Information Technology Management, Colorado State University (Expected 2027)</p>
+            <p><strong>Education History </strong> B.S. Management Information Systems, Columbia College | 2022-2025 B.A. Linguistics, University of the Humanities | 2014-1028</p>
             <p><strong>Working with</strong> Claude Code · Cursor · Google AI Studio for rapid spec drafting and edge-case discovery</p>
 
             <div className="lang-row">
@@ -553,7 +548,7 @@ function App() {
         </div>
       </section>
 
-      {/* EXPERIENCE & EDUCATION */}
+      {/* EXPERIENCE */}
       <section className="block" id="experience">
         <div className="section-head">
           <h2>
@@ -561,7 +556,7 @@ function App() {
             <em>then</em> product manager.
           </h2>
           <div className="right">
-            <div className="tiny-label" style={{ marginBottom: 8 }}>Experience &amp; Education</div>
+            <div className="tiny-label" style={{ marginBottom: 8 }}>Experience</div>
             Eight years across logistics, sales leadership, and home care
             operations — three industries, one through-line: ship the thing,
             cleanly, in a regulated context.
@@ -588,20 +583,6 @@ function App() {
               thesis that scales to multi-agency deployments.
             </p>
           </div>
-
-          <div className="tl-item tl-edu">
-            <div className="tl-row">
-              <div>
-                <h4>M.S. Information Technology Management</h4>
-                <div className="org">CSU Global — Colorado</div>
-              </div>
-              <span className="when">2025 — Present · Expected 2027</span>
-            </div>
-            <p>
-              Formalizing the product and systems methodology built while shipping PARCOVO. Structured frameworks for roadmap governance, technology strategy, and stakeholder alignment — the academic scaffolding around what I was already doing in production.
-            </p>
-          </div>
-
           <div className="tl-item">
             <div className="tl-row">
               <div>
@@ -610,16 +591,24 @@ function App() {
               </div>
               <span className="when">Mar 2025 — Present</span>
             </div>
-            <p>Embedded inside live home care operations as the primary discovery engine for PARCOVO — mapping PAR workflows, Medicaid documentation, caregiver credentialing, and EVV gaps. Identified manual data entry as root cause of 80% of downstream rework, making it the core product design principle. Validated with daily active users, then designed a prioritization system: regulatory compliance first, operational efficiency second, feature requests third — so new agencies launch without custom engineering.</p>
-          </div>
+            <p>Embedded inside live home care operations as the primary discovery engine for PARCOVO — mapping PAR workflows, Medicaid documentation, caregiver credentialing, and EVV gaps. Identified manual data entry as root cause of 80% of downstream rework, making it the core product design principle. Validated with daily active users, then designed a prioritization system: regulatory compliance first, operational efficiency second, feature requests third — so new agencies launch without custom engineering.
 
+
+
+
+
+
+
+
+            </p>
+          </div>
           <div className="tl-item">
             <div className="tl-row">
               <div>
                 <h4>Growth PM / Sales Operations Manager</h4>
                 <div className="org">Autocom Japan Inc. — Ulaanbaatar, Mongolia</div>
               </div>
-              <span className="when">Sep 2020 — July 2025</span>
+              <span className="when">Apr 2022 — July 2025</span>
             </div>
             <p>
               Led growth strategy for the Mongolia branch, scaling the team by
@@ -630,29 +619,22 @@ function App() {
               real-time auction data feed into core operations.
             </p>
           </div>
-
-          <div className="tl-item tl-edu">
-            <div className="tl-row">
-              <div>
-                <h4>B.S. Management Information Systems · B.A. Linguistics</h4>
-                <div className="org">Columbia College — Denver, CO</div>
-              </div>
-              <span className="when">2022 — 2025</span>
-            </div>
-            <p>
-              Built the technical and analytical foundation for product work — systems analysis, database design, and project management through the MIS lens, paired with the cross-cultural communication instinct that comes from studying language. Two disciplines that together form the core of how I think about building software for real users.
-            </p>
-          </div>
-
           <div className="tl-item">
             <div className="tl-row">
               <div>
                 <h4>Logistics &amp; Compliance Coordinator</h4>
                 <div className="org">Kaneyama LLC — Ulaanbaatar, Mongolia</div>
               </div>
-              <span className="when">Jun 2018 — Aug 2020</span>
+              <span className="when">Jun 2018 — Aug 2021</span>
             </div>
-            <p>Owned the revenue cycle and product integrity for the vehicle import pipeline — financial reconciliation and safe arrival of assets. Trilingual liaison (English · Mongolian · Japanese) between international suppliers and customs authorities, where noticing that a well-designed process beats effort sparked the instinct to ask why systems are built the way they are.</p>
+            <p>Owned the revenue cycle and product integrity for the vehicle import pipeline — financial reconciliation and safe arrival of assets. Trilingual liaison (English · Mongolian · Japanese) between international suppliers and customs authorities, where noticing that a well-designed process beats effort sparked the instinct to ask why systems are built the way they are.
+
+
+
+
+
+
+            </p>
           </div>
         </div>
       </section>
@@ -803,23 +785,21 @@ function App() {
             <a
               className="btn btn-resume btn-resume-xl"
               href="assets/Ariunzaya_Baasanjargal_Resume.pdf"
-              target="_blank"
-              rel="noreferrer"
+              download="Ariunzaya_Baasanjargal_Resume.pdf"
             >
               <DownloadIcon size={17} />
               <span className="btn-stack">
-                <span className="btn-main">View résumé</span>
-                <span className="btn-sub">PDF · view &amp; print</span>
+                <span className="btn-main">Download résumé</span>
+                <span className="btn-sub">PDF · 1 page</span>
               </span>
-              <span className="btn-arrow" aria-hidden>↗</span>
+              <span className="btn-arrow" aria-hidden>↓</span>
             </a>
             <a
               className="btn btn-letter"
               href="assets/Ariunzaya_Baasanjargal_CoverLetter.pdf"
-              target="_blank"
-              rel="noreferrer"
+              download="Ariunzaya_Baasanjargal_CoverLetter.pdf"
             >
-              <DownloadIcon size={15} /> View cover letter
+              <DownloadIcon size={15} /> Cover letter
             </a>
           </div>
         </div>
