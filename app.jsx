@@ -271,9 +271,8 @@ function App() {
         <a href="#about">About</a>
         <a href="#parcovo">PARCOVO</a>
         <a href="#experience">Experience</a>
-        <a href="#letter">Cover letter</a>
         <a
-          href="assets/Ariunzaya_Baasanjargal_Resume.pdf"
+          href="public/Ariunzaya_Resume.pdf"
           target="_blank"
           rel="noreferrer"
           className="nav-resume"
@@ -302,17 +301,16 @@ function App() {
             Currently shipping at a live home care agency
           </div>
           <h1>
-            <span className="accent">Product Manager</span><br />
+            <span className="accent">Founder &amp; Implementation Lead</span><br />
             who built the <span className="underline">whole&nbsp;cow</span>,<br />
             not just the&nbsp;moo.
           </h1>
           <p className="hero-sub">
             Hi — I'm <strong className="fancy-name">Ariunzaya Baasanjargal.</strong> I learn
-            product strategy from customers first. Six years across international
-            logistics, operations scaling, and regulated home care taught me the best
-            roadmaps come from watching what your users actually struggle with — then
+            the work before I build the tool. Six years across international
+            logistics, operations scaling, and regulated home care led to
             shipping <strong>PARCOVO</strong>, a HIPAA-grade SaaS validated daily by
-            live agency staff.
+            live agency staff — built from the inside out.
           </p>
 
           <div className="hero-meta">
@@ -340,7 +338,7 @@ function App() {
           <div className="hero-ctas">
             <a
               className="btn btn-resume btn-resume-xl"
-              href="assets/Ariunzaya_Baasanjargal_Resume.pdf"
+              href="public/Ariunzaya_Resume.pdf"
               target="_blank"
               rel="noreferrer"
             >
@@ -353,9 +351,6 @@ function App() {
             </a>
             <a className="btn btn-primary" href="#parcovo">
               See PARCOVO <span aria-hidden>→</span>
-            </a>
-            <a className="btn btn-ghost" href="#letter">
-              Cover letter
             </a>
           </div>
         </div>
@@ -404,9 +399,9 @@ function App() {
         <div className="about-grid">
           <div className="about-prose">
             <p>
-              <span className="hl">The best roadmaps come from watching what your
+              <span className="hl">The best solutions come from watching what your
               users actually struggle with</span> — then eliminating that friction
-              before building feature lists. A decade in operations and a year of
+              before building systems. A decade in operations and a year of
               deep niche validation taught me that.
             </p>
             <p>
@@ -415,14 +410,14 @@ function App() {
               solving it, and validated with a live customer seeing <strong>~60%
               overhead reduction</strong> in authorization management. I own the
               full lifecycle — discovery to deployment — collaborating across
-              engineering, operations, and compliance to balance technical debt
-              with high-impact trade-offs.
+              engineering, operations, and compliance to balance technical constraints
+              with high-impact outcomes.
             </p>
           </div>
 
           <div className="about-card">
             <h3>Quick facts</h3>
-            <p><strong>Based in</strong> Denver, CO · U.S. Permanent Resident</p>
+            <p><strong>Based in</strong> Denver, CO</p>
             <p><strong>Studying</strong> M.S. Information Technology Management, CSU Global (Expected 2027)</p>
             <p><strong>Education</strong> B.S. Management Information Systems + B.A. Linguistics, Columbia College — Denver, CO · 2022–2025</p>
             <p><strong>Working with</strong> Claude Code · Cursor · Google AI Studio for rapid spec drafting and edge-case discovery</p>
@@ -558,7 +553,7 @@ function App() {
         <div className="section-head">
           <h2>
             Operator first,<br />
-            <em>then</em> product manager.
+            <em>builder</em> always.
           </h2>
           <div className="right">
             <div className="tiny-label" style={{ marginBottom: 8 }}>Experience &amp; Education</div>
@@ -572,87 +567,87 @@ function App() {
           <div className="tl-item">
             <div className="tl-row">
               <div>
-                <h4>Senior Product Manager, Co-Founder</h4>
-                <div className="org">Ariune LLC · PARCOVO — Colorado</div>
+                <h4>Founder &amp; Implementation Lead</h4>
+                <div className="org">PARCOVO · Denver, CO</div>
               </div>
-              <span className="when">Aug 2025 — Present</span>
+              <span className="when">Jun 2025 — Present</span>
             </div>
-            <p>
-              Defined product strategy and owned delivery of 22 core modules —
-              prioritizing highest-cost-of-failure workflows (compliance &amp;
-              authorization tracking) over most-requested features. Eliminated
-              coordinators' manual PAR workflows with a centralized dashboard
-              surfacing real-time compliance deadlines (license renewals, PARs
-              expiring, supervisory visits due). Designed authorization as a
-              compliance ledger, not a document manager — the core product
-              thesis that scales to multi-agency deployments.
-            </p>
+            <ul>
+              <li>Led the end-to-end implementation for an active Medicaid agency, overseeing 117 clients and 126 caregivers. Managed the complete transition from initial stakeholder discovery and workflow analysis to final system configuration and staff onboarding, replacing manual processes with a centralized digital platform.</li>
+              <li>Developed and launched 22 compliance modules, including a comprehensive prior authorization lifecycle system, caregiver credentialing, and real-time supervisory tools, achieving 100% user adoption across 7 daily staff with zero support escalations.</li>
+              <li>Established robust security and scalability by deploying all 5 HIPAA compliance phases (AES-256 PHI encryption, audit logging, MFA, 4-tier RBAC, data retention) and engineering a reusable onboarding architecture for seamless deployment at future agencies.</li>
+              <li>Acted as the primary liaison for all ongoing product strategy and client escalations; embedded within agency operations to map complex authorization workflows and define the comprehensive product roadmap before initiating technical development.</li>
+            </ul>
+          </div>
+
+          <div className="tl-item">
+            <div className="tl-row">
+              <div>
+                <h4>Product Researcher &amp; Operations Strategist</h4>
+                <div className="org">CHCS Ltd. · Denver, CO</div>
+              </div>
+              <span className="when">Mar 2025 — Present</span>
+            </div>
+            <ul>
+              <li>Collaborated within active agency environments to identify and document critical gaps in authorization, credentialing, and operational workflows; utilized these insights to architect PARCOVO and establish a compliance-centric onboarding framework prioritizing risk mitigation and feature scalability.</li>
+            </ul>
           </div>
 
           <div className="tl-item tl-edu">
             <div className="tl-row">
               <div>
                 <h4>M.S. Information Technology Management</h4>
-                <div className="org">CSU Global — Colorado</div>
+                <div className="org">Colorado State University</div>
               </div>
-              <span className="when">2025 — Present · Expected 2027</span>
+              <span className="when">2025 — 2027 (In Progress)</span>
             </div>
-            <p>
-              Formalizing the product and systems methodology built while shipping PARCOVO. Structured frameworks for roadmap governance, technology strategy, and stakeholder alignment — the academic scaffolding around what I was already doing in production.
-            </p>
           </div>
 
           <div className="tl-item">
             <div className="tl-row">
               <div>
-                <h4>Lead Product Researcher &amp; Operations Strategist</h4>
-                <div className="org">Complex Home Care Solutions — Colorado</div>
+                <h4>Growth PM &amp; Sales Operations Manager</h4>
+                <div className="org">Autocom Japan Inc. · Mongolia</div>
               </div>
-              <span className="when">Mar 2025 — Present</span>
+              <span className="when">Sep 2020 — Mar 2022</span>
             </div>
-            <p>Embedded inside live home care operations as the primary discovery engine for PARCOVO — mapping PAR workflows, Medicaid documentation, caregiver credentialing, and EVV gaps. Identified manual data entry as root cause of 80% of downstream rework, making it the core product design principle. Validated with daily active users, then designed a prioritization system: regulatory compliance first, operational efficiency second, feature requests third — so new agencies launch without custom engineering.</p>
-          </div>
-
-          <div className="tl-item">
-            <div className="tl-row">
-              <div>
-                <h4>Growth PM / Sales Operations Manager</h4>
-                <div className="org">Autocom Japan Inc. — Ulaanbaatar, Mongolia</div>
-              </div>
-              <span className="when">Sep 2020 — July 2025</span>
-            </div>
-            <p>
-              Led growth strategy for the Mongolia branch, scaling the team by
-              treating organizational expansion as a product problem — defining
-              KPI dashboards, success metrics, and performance systems aligning
-              cross-functional teams across Japan, Africa, and the Caribbean.
-              Secured a sustainable competitive pricing edge by integrating a
-              real-time auction data feed into core operations.
-            </p>
+            <ul>
+              <li>Standardized training protocols for 20 accounts across Caribbean and African territories, resulting in a ~30% faster client ramp-up and long-term retention.</li>
+              <li>Managed international cross-functional handoffs between operations, sales, and regional leadership. Monitored onboarding KPIs and delivered weekly milestone reports to the executive team.</li>
+            </ul>
           </div>
 
           <div className="tl-item tl-edu">
             <div className="tl-row">
               <div>
-                <h4>B.S. Management Information Systems · B.A. Linguistics</h4>
-                <div className="org">Columbia College — Denver, CO</div>
+                <h4>Prerequisite MIS Coursework toward MSITM</h4>
+                <div className="org">Columbia College · Denver, CO</div>
               </div>
               <span className="when">2022 — 2025</span>
             </div>
-            <p>
-              Built the technical and analytical foundation for product work — systems analysis, database design, and project management through the MIS lens, paired with the cross-cultural communication instinct that comes from studying language. Two disciplines that together form the core of how I think about building software for real users.
-            </p>
           </div>
 
           <div className="tl-item">
             <div className="tl-row">
               <div>
                 <h4>Logistics &amp; Compliance Coordinator</h4>
-                <div className="org">Kaneyama LLC — Ulaanbaatar, Mongolia</div>
+                <div className="org">Kaneyama LLC · Mongolia</div>
               </div>
-              <span className="when">Jun 2018 — Aug 2020</span>
+              <span className="when">Jun 2018 — Sep 2020</span>
             </div>
-            <p>Owned the revenue cycle and product integrity for the vehicle import pipeline — financial reconciliation and safe arrival of assets. Trilingual liaison (English · Mongolian · Japanese) between international suppliers and customs authorities, where noticing that a well-designed process beats effort sparked the instinct to ask why systems are built the way they are.</p>
+            <ul>
+              <li>Served as a trilingual liaison (English, Mongolian, and Japanese) for international authorities and suppliers; oversaw revenue cycle reporting and held responsibility for compliance documentation within strict regulatory timeframes.</li>
+            </ul>
+          </div>
+
+          <div className="tl-item tl-edu">
+            <div className="tl-row">
+              <div>
+                <h4>Bachelor of Arts in Education</h4>
+                <div className="org">University of the Humanities · Mongolia</div>
+              </div>
+              <span className="when">2014 — 2018</span>
+            </div>
           </div>
         </div>
       </section>
@@ -713,118 +708,6 @@ function App() {
         </div>
       </section>
 
-      {/* COVER LETTER */}
-      <section className="block letter-section" id="letter">
-        <div className="section-head">
-          <h2>
-            On <em>how I think</em>,<br />
-            in long form.
-          </h2>
-          <div className="right">
-            <div className="tiny-label" style={{ marginBottom: 8 }}>Cover letter · May 2026</div>
-            A note on the product philosophy I'd bring to a roadmap — written
-            for AxisCare, but it speaks to how I work anywhere.
-          </div>
-        </div>
-
-        <div className="letter-card">
-          <div className="letter-grain" aria-hidden />
-          <div className="letter-stamp" aria-hidden>
-            <Sparkle size={18} />
-          </div>
-          <div className="letter-meta">
-            <div><span className="k">From</span> Ariunzaya Baasanjargal · Denver, CO</div>
-            <div><span className="k">To</span> Hiring Team, AxisCare</div>
-            <div><span className="k">Date</span> May 2026</div>
-          </div>
-
-          <p className="letter-lede">
-            I built <strong>PARCOVO</strong>, a production-grade SaaS platform for
-            home care compliance, while embedded inside a live agency. It handles
-            Prior Authorization tracking, Medicaid documentation, and multi-tenant
-            data isolation — HIPAA-encrypted, with live users.
-          </p>
-
-          <p>
-            What the project clarified for me wasn't technical — it was a product
-            philosophy. Authorization tracking already exists in most platforms,
-            including AxisCare's. But <em>tracking authorized hours isn't the same
-            as surfacing compliance risk in real time.</em> When a coordinator can
-            see that authorized hours/units are expiring unused — or that visit
-            data isn't aligning with what was billed — that becomes a denied
-            claim or an audit flag. I built PARCOVO around that principle:
-            <strong> authorization as a compliance ledger, not just a number,</strong>
-            and validated it with live users. That's the kind of thinking I'd
-            bring to AxisCare's roadmap.
-          </p>
-
-          <p>
-            I noticed AxisCare launched <strong>Intelligence</strong> last November,
-            and <strong>Axi</strong> — the AI chat assistant — is already embedded
-            in the platform. That's a strong foundation, and it points to a product
-            question I find genuinely interesting: when a system becomes the daily
-            operating environment for agency staff, the interface itself becomes
-            part of the compliance workflow. Axi already has a name and a presence.
-            The question worth asking is what behaviors that character drives —
-            whether coordinators trust it enough to act on its alerts, whether
-            caregivers engage with the mobile app consistently enough to generate
-            the data that makes intelligence useful.
-          </p>
-
-          <p className="letter-callout">
-            More engagement means better data. Better data means sharper insights.
-            That feedback loop is a product problem as much as a technical one,
-            and it's one I'd want to work on.
-          </p>
-
-          <p style={{ fontWeight: "500" }}>
-            On how I work: I think through problems directly, ship early to get
-            feedback fast, and push back when the data suggests we're deciding
-            wrong — then execute fully once a decision is made. I'm fluent with
-            AI tools (Claude, Cursor, rapid prototyping) to compress discovery
-            cycles, but I don't let speed replace judgment on what matters to
-            build. <em>My best product decisions have come from sitting in the
-            ops office watching where friction actually happens.</em>
-          </p>
-
-          <p>
-            I'd be glad to walk through the PARCOVO architecture or talk through
-            how I'd approach discovery at AxisCare. Thank you for your time.
-          </p>
-
-          <div className="letter-sign">
-            <div className="sig">Ariunzaya</div>
-            <div className="sig-meta">
-              Ariunzaya Baasanjargal · ariune.com<br />
-              rn.zaya019@gmail.com · 720-384-9848
-            </div>
-          </div>
-          <div className="letter-actions">
-            <a
-              className="btn btn-resume btn-resume-xl"
-              href="assets/Ariunzaya_Baasanjargal_Resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <DownloadIcon size={17} />
-              <span className="btn-stack">
-                <span className="btn-main">View résumé</span>
-                <span className="btn-sub">PDF · view &amp; print</span>
-              </span>
-              <span className="btn-arrow" aria-hidden>↗</span>
-            </a>
-            <a
-              className="btn btn-letter"
-              href="assets/Ariunzaya_Baasanjargal_CoverLetter.pdf"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <DownloadIcon size={15} /> View cover letter
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* CONTACT */}
       <section className="contact-section" id="contact">
         <div className="contact-grid">
@@ -857,15 +740,10 @@ function App() {
                 <span className="v">ariunzaya-baasanjargal</span>
                 <span className="arr">↗</span>
               </a>
-              <a className="contact-row" href="https://ariune.com" target="_blank" rel="noreferrer">
+              <a className="contact-row" href="https://ariune.com" target="_blank" rel="noreferrer" style={{ borderBottom: "none" }}>
                 <span className="k">Site</span>
                 <span className="v">ariune.com</span>
                 <span className="arr">↗</span>
-              </a>
-              <a className="contact-row" href="#letter" style={{ borderBottom: "none", marginTop: 8 }}>
-                <span className="k">Letter</span>
-                <span className="v" style={{ color: "var(--gold)" }}>Read the cover letter</span>
-                <span className="arr" style={{ color: "var(--gold)" }}>↓</span>
               </a>
             </div>
           </div>
