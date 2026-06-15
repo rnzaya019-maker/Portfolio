@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finnsul, Chapter Two — an independent operations market study · Ariunzaya Baasanjargal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500;1,600&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #11261C; --deep: #0E2018; --cream: #F2F0E6; --paper: #FFFFFF;
+    --lime: #D6FF3D; --mint: #9DE8C8; --teal: #3DD6C4; --green: #1F7A52;
+    --ember: #C2491D; --body: #44584C; --mute: #6B7D72; --fog: rgba(244,246,241,0.72);
+  }
+  html, body { margin: 0; padding: 0; background: var(--deep); }
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    font-family: 'Geist', system-ui, sans-serif; color: var(--ink); letter-spacing: -0.01em; }
+  img, video { max-width: 100%; }
+  @keyframes floaty { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-18px) rotate(12deg); } }
+
+  .page { background: var(--cream); position: relative; }
+  .serif { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 500; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  .kicker { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 600; }
+  h2.sec-title { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(34px, 4.2vw, 58px);
+    letter-spacing: -0.04em; line-height: 0.98; margin: 14px 0 18px; }
+  .src-cap { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.06em;
+    color: var(--mute); margin-top: 10px; line-height: 1.6; }
+  .src-cap.dk { color: #6F8A7B; }
+
+  /* ── nav ── */
+  .nav { position: fixed; top: 18px; left: 50%; transform: translateX(-50%); z-index: 90;
+    display: flex; align-items: center; gap: 4px; padding: 7px 8px 7px 16px;
+    background: rgba(14,32,24,0.78); backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border: 1px solid rgba(214,255,61,0.2); border-radius: 999px;
+    box-shadow: 0 10px 34px -12px rgba(0,0,0,0.55); max-width: 94vw; overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-brand { display: flex; align-items: center; gap: 10px; padding-right: 14px;
+    border-right: 1px solid rgba(255,255,255,0.14); margin-right: 6px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo { width: 30px; height: 30px; border-radius: 50%; background: var(--lime);
+    display: grid; place-items: center; padding: 4px; flex-shrink: 0; box-sizing: border-box; }
+  .nav-logo img { width: 100%; height: 100%; object-fit: contain; }
+  .nav-brand .word { font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 22px; font-weight: 600; color: #F4F6F1; }
+  .nav a.navlink { color: #E6ECE4; text-decoration: none; font-size: 13.5px; font-weight: 500;
+    padding: 8px 13px; border-radius: 999px; white-space: nowrap; transition: background 0.18s, color 0.18s; }
+  .nav a.navlink:hover { background: rgba(214,255,61,0.12); color: var(--lime); }
+  .nav a.navcta { background: var(--lime); color: var(--deep); text-decoration: none; font-size: 13.5px;
+    font-weight: 700; padding: 8px 16px; border-radius: 999px; white-space: nowrap; transition: background 0.18s; }
+  .nav a.navcta:hover { background: #E8FF7A; }
+
+  /* ── buttons ── */
+  .btn { display: inline-flex; align-items: center; gap: 9px; border-radius: 999px;
+    padding: 14px 26px; font-size: 14.5px; text-decoration: none;
+    transition: transform 0.18s, background 0.18s; }
+  .btn-lime { font-weight: 700; background: var(--lime); color: var(--deep);
+    box-shadow: 0 12px 30px -10px rgba(214,255,61,0.45); }
+  .btn-lime:hover { transform: translateY(-2px); background: #E8FF7A; }
+  .btn-glass { font-weight: 600; background: rgba(244,246,241,0.08); color: #F4F6F1;
+    border: 1px solid rgba(244,246,241,0.35); backdrop-filter: blur(6px); }
+  .btn-glass:hover { background: rgba(255,255,255,0.16); transform: translateY(-2px); }
+  .btn-line { font-weight: 600; background: transparent; color: #F4F6F1;
+    border: 1px solid rgba(244,246,241,0.4); }
+  .btn-line:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+
+  /* ── particles ── */
+  .particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+  .particle { position: absolute; opacity: 0.85; animation: floaty 8s ease-in-out infinite; }
+
+  /* ── hero ── */
+  .hero { position: relative; min-height: 100vh; display: grid; align-items: end;
+    overflow: hidden; background: var(--deep); }
+  .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
+  .hero-shade { position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(14,32,24,0.55) 0%, rgba(14,32,24,0.15) 40%, rgba(14,32,24,0.92) 88%); }
+  .hero-inner { position: relative; z-index: 2; padding: 140px 6vw 70px; max-width: 1100px; }
+  .badge-ghost { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; font-weight: 600; background: rgba(214,255,61,0.16);
+    border: 1px solid rgba(214,255,61,0.4); color: var(--lime); border-radius: 999px; padding: 8px 16px; }
+  .badge-solid { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 600; background: var(--lime); color: var(--deep);
+    border-radius: 999px; padding: 8px 16px; transform: rotate(-1.5deg); border: 1.5px solid var(--deep); }
+  .hero h1 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;
+    font-size: clamp(52px, 7.5vw, 118px); line-height: 0.92; letter-spacing: -0.045em;
+    margin: 0 0 24px; color: #F4F6F1; }
+  .hero-sub { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.65; color: rgba(244,246,241,0.85);
+    max-width: 660px; margin: 0 0 30px; }
+
+  /* ── sections ── */
+  .sec { padding: 0 6vw 100px; background: var(--cream); }
+  .band-wrap { padding: 0 4vw 100px; background: var(--cream); }
+  .band { background: linear-gradient(145deg, #11261C 0%, #0E2018 100%); border-radius: 32px;
+    padding: 70px 5vw; position: relative; overflow: hidden; color: #F4F6F1; }
+  .grid-2 { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: start; }
+
+  .stat-tile { background: var(--paper); border: 1px solid rgba(17,38,28,0.1); border-radius: 16px; padding: 18px; }
+  .stat-tile .n { font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; font-weight: 700; color: var(--green); }
+  .stat-tile .l { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--mute); margin-top: 2px; }
+  .market-tile { background: rgba(31,122,82,0.07); border: 1px solid rgba(31,122,82,0.25);
+    border-radius: 16px; padding: 18px; }
+  .market-tile .n { font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700; color: var(--green); }
+  .market-tile .l { font-size: 12.5px; line-height: 1.5; color: var(--body); margin-top: 4px; }
+
+  .feather-video { display: block; object-fit: cover;
+    mask-image: radial-gradient(ellipse 60% 58% at 50% 50%, #000 32%, transparent 88%);
+    -webkit-mask-image: radial-gradient(ellipse 60% 58% at 50% 50%, #000 32%, transparent 88%); }
+  .vid-tag { position: absolute; background: rgba(17,38,28,0.85); color: #D8EBD2;
+    backdrop-filter: blur(8px); border-radius: 10px; padding: 7px 12px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .win-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(214,255,61,0.16);
+    border-radius: 18px; padding: 24px; transition: background 0.2s, transform 0.2s; }
+  .win-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-3px); }
+  .win-card .move { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--lime); margin-bottom: 10px; font-weight: 600; }
+  .win-card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .win-card p { margin: 0; font-size: 14px; line-height: 1.65; color: rgba(244,246,241,0.7); }
+
+  .opp-card { background: var(--paper); border: 1px solid rgba(17,38,28,0.1); border-radius: 18px;
+    padding: 24px 26px; display: flex; gap: 18px; align-items: flex-start;
+    transition: transform 0.2s, box-shadow 0.2s; }
+  .opp-card:hover { transform: translateX(4px); box-shadow: 0 18px 36px -20px rgba(31,122,82,0.45); }
+  .opp-card .letter { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 38px;
+    color: var(--green); line-height: 1; flex-shrink: 0; }
+  .opp-card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 18.5px; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .opp-card p { margin: 0; font-size: 14px; line-height: 1.65; color: var(--body); }
+
+  .pillar { background: rgba(255,255,255,0.05); border: 1px solid rgba(61,214,196,0.25);
+    border-radius: 20px; padding: 26px; transition: background 0.2s, transform 0.2s; }
+  .pillar:hover { background: rgba(255,255,255,0.09); transform: translateY(-4px); }
+  .pillar .ph { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .pillar .pnum { width: 40px; height: 40px; border-radius: 12px; background: rgba(61,214,196,0.16);
+    display: grid; place-items: center; font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700; font-size: 17px; color: var(--teal); flex-shrink: 0; }
+  .pillar h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 20px; margin: 0; letter-spacing: -0.01em; }
+  .pillar p { margin: 0 0 14px; font-size: 14px; line-height: 1.65; color: rgba(244,246,241,0.72); }
+  .pillar .lever { border-top: 1px dashed rgba(214,255,61,0.3); padding-top: 12px;
+    font-size: 13px; line-height: 1.55; color: var(--lime); }
+  .pillar .lever strong { font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    letter-spacing: 0.12em; text-transform: uppercase; }
+
+  .phase { background: rgba(214,255,61,0.08); border: 1px solid rgba(214,255,61,0.3);
+    border-radius: 16px; padding: 20px 22px; }
+  .phase .ph-k { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--lime); font-weight: 600; margin-bottom: 8px; }
+  .phase p { margin: 0; font-size: 13.5px; line-height: 1.6; color: rgba(244,246,241,0.78); }
+
+  /* ── console ── */
+  .console { max-width: 1080px; margin: 0 auto; background: #11261C;
+    border: 1px solid rgba(214,255,61,0.2); border-radius: 24px; overflow: hidden;
+    box-shadow: 0 50px 100px -40px rgba(0,0,0,0.7); position: relative; }
+  .console-head { display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap; padding: 18px 24px; border-bottom: 1px solid rgba(244,246,241,0.1); background: rgba(0,0,0,0.2); }
+  .tabbar { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tabbtn { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em;
+    text-transform: uppercase; font-weight: 600; padding: 9px 15px; border-radius: 999px; cursor: pointer;
+    transition: background 0.18s, color 0.18s; border: 1px solid rgba(244,246,241,0.22);
+    background: rgba(255,255,255,0.05); color: #DCE8E0; }
+  .tabbtn.active { border: 1.5px solid var(--deep); background: var(--lime); color: var(--deep); }
+  .tabpanel { display: none; padding: 26px 24px 30px; }
+  .tabpanel.active { display: block; }
+  .cs-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(244,246,241,0.1);
+    border-radius: 16px; padding: 20px; }
+  .cs-lab { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: #6F8A7B; margin-bottom: 16px; }
+  .cs-kpi { font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 700; color: #F4F6F1; }
+  .cs-row { display: flex; justify-content: space-between; gap: 10px; font-size: 13px;
+    border-bottom: 1px dashed rgba(244,246,241,0.12); padding-bottom: 9px; }
+  .cs-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .pillok { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
+    text-transform: uppercase; border-radius: 999px; padding: 4px 10px; }
+  .pillok.ok { background: rgba(157,232,200,0.15); color: var(--mint); }
+  .pillok.warn { background: rgba(255,158,107,0.15); color: #FF9E6B; }
+  .pillok.idle { background: rgba(244,246,241,0.1); color: #9FB5A8; }
+  .pillok.go { background: rgba(214,255,61,0.15); color: var(--lime); }
+  .bar-row { display: grid; grid-template-columns: 110px 1fr 44px; align-items: center; gap: 12px; }
+  .bar-track { height: 10px; border-radius: 999px; background: rgba(255,255,255,0.08); overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 999px; }
+
+  /* ── fit table ── */
+  .fit-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--paper);
+    border: 1px solid rgba(17,38,28,0.1); border-radius: 16px; overflow: hidden; }
+  .fit-row .need { padding: 18px 20px; border-right: 1px dashed rgba(17,38,28,0.14); }
+  .fit-row .bring { padding: 18px 20px; }
+  .fit-k { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 6px; }
+
+  .tilt-img { border-radius: 18px; overflow: hidden; box-shadow: 0 24px 48px -22px rgba(17,38,28,0.45); }
+  .tilt-img img { display: block; width: 100%; height: auto; }
+
+  /* ── responsive ── */
+  @media (max-width: 980px) {
+    .grid-2, .wins-head, .blueprint-head, .fit-grid { grid-template-columns: 1fr !important; }
+    .two-col, .three-col, .pillar-grid, .phase-grid, .opp-sticky-grid { grid-template-columns: 1fr !important; }
+    .sticky-col { position: static !important; }
+    .campaign-grid { display: grid !important; grid-template-columns: 1fr !important; }
+    .campaign-grid > div { grid-column: auto !important; }
+    .nav { top: 10px; }
+    .feather-video { width: 100% !important; margin-left: 0 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav class="nav">
+    <a class="nav-brand" href="index.html" title="Back to portfolio">
+      <div class="nav-logo"><img src="assets/ariune-logo-new.png" alt="Ariune endless-knot logo"></div>
+      <span class="word">ariune</span>
+    </a>
+    <a class="navlink" href="index.html">← Portfolio</a>
+    <a class="navlink" href="#brand">The brand</a>
+    <a class="navlink" href="#nexttier">Next tier</a>
+    <a class="navlink" href="#blueprint">Blueprint</a>
+    <a class="navlink" href="#campaign">Campaign</a>
+    <a class="navlink" href="#prototype">Prototype</a>
+    <a class="navcta" href="#fit">Why me</a>
+  </nav>
+
+  <!-- ═══════════ HERO / DOSSIER COVER ═══════════ -->
+  <header class="hero">
+    <video autoplay muted loop playsinline src="assets/campaign/video1_hero.mp4"></video>
+    <div class="hero-shade"></div>
+    <div class="particles" aria-hidden="true">
+      <div class="particle" style="top:12%;left:6%;animation-duration:8s;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2 L13.8 9.5 L21 11 L13.8 12.5 L12 22 L10.2 12.5 L3 11 L10.2 9.5 Z" fill="#FFC83D" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <div class="particle" style="top:20%;left:88%;animation-duration:9s;animation-delay:1.3s;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.4-7 10-7 10z" fill="#3DD6C4" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <div class="particle" style="top:38%;left:72%;animation-duration:7s;animation-delay:0.6s;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2 L22 12 L12 22 L2 12 Z" fill="#D6FF3D" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <div class="particle" style="top:56%;left:92%;animation-duration:8.5s;animation-delay:2.1s;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2 L13.8 9.5 L21 11 L13.8 12.5 L12 22 L10.2 12.5 L3 11 L10.2 9.5 Z" fill="#D6FF3D" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <div class="particle" style="top:30%;left:40%;animation-duration:10s;animation-delay:0.9s;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.4-7 10-7 10z" fill="#FF9EB3" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div class="hero-inner">
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 24px;">
+        <span class="badge-ghost">Journal entry · June 2026</span>
+        <span class="badge-solid">by Zaya — for Finnsul</span>
+      </div>
+      <h1>Finnsul, <span class="serif" style="color: var(--lime);">chapter two.</span></h1>
+      <p class="hero-sub">I found Finnsul the way their customer probably does — through a tab that had no business being open at 11pm. I'm <strong>Zaya</strong>: operations builder, trilingual, crossed three industries and one ocean. I write these because applying cold felt insufficient. This is what I actually found when I looked — and what I'd do about it.</p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+        <a class="btn btn-lime" href="#brand">Read the journal ↓</a>
+        <a class="btn btn-glass" href="#prototype">Skip to the prototype</a>
+        <span class="mono" style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(244,246,241,0.55);">my honest read · from public sources · June 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════ BRAND SNAPSHOT ═══════════ -->
+  <section id="brand" style="padding: 100px 6vw 90px; background: var(--cream);">
+    <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(20px, 2vw, 26px); color: var(--body); line-height: 1.65; max-width: 780px; margin: 0 0 64px; border-left: 3px solid var(--green); padding-left: 24px;">I spent a weekend actually understanding what they built — not the marketing, the structure. Here's what stood out.</p>
+    <div class="grid-2">
+      <div>
+        <div class="kicker" style="color: var(--green);">01 · What I actually found</div>
+        <h2 class="sec-title" style="color: var(--ink);">Hydration for your <span class="serif" style="color: var(--green);">brain.</span></h2>
+        <p style="color: var(--body); font-size: 16px; line-height: 1.7; margin: 0 0 16px;">Finnsul is a "sippable self-care" brand built by Tarte founder <strong style="color: var(--ink);">Maureen Kelly</strong> and her sons <strong style="color: var(--ink);">Finn and Sully McDonough</strong> — the name is theirs, merged. Bootstrapped from Kelly's renovated garage, it sells zero-sugar drink-mix sticks that pair an electrolyte complex with nootropics — hydration for the body, clarity for the brain.</p>
+        <p style="color: var(--body); font-size: 16px; line-height: 1.7; margin: 0 0 28px;">The insight is personal: the founders describe living with "37 tabs open at once." The product answers with Cognizin citicoline for focus, a B-vitamin stack, electrolytes, and zero sugar — caffeinated and caffeine-free, in flavors picked with the community. Customers agree: a <strong style="color: var(--ink);">4.97-star rating</strong> on finnsul.com, and one-time-purchase packs were sold out at the time of this study.</p>
+        <div class="three-col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+          <div class="stat-tile"><div class="n">0g</div><div class="l">sugar · 5 cal</div></div>
+          <div class="stat-tile"><div class="n">4.97★</div><div class="l">rating · finnsul.com</div></div>
+          <div class="stat-tile"><div class="n">3</div><div class="l">founders, one garage</div></div>
+        </div>
+        <div class="two-col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px;">
+          <div class="market-tile">
+            <div class="n"><span data-countup="1.5" data-decimals="1" data-prefix="$" data-suffix="B">$1.5B</span> · +20%</div>
+            <div class="l">US powder drink-mix category, growing ~20% a year — four straight years of double-digit growth.</div>
+            <div class="src-cap">Circana, 52 wks ending Apr 2025 · via Beverage Industry</div>
+          </div>
+          <div class="market-tile">
+            <div class="n">$6.7B → $14.8B</div>
+            <div class="l">Global nootropics market, 2026 → 2034 (10.5% CAGR) — Finnsul sits at the category's sharpest edge.</div>
+            <div class="src-cap">Fortune Business Insights, 2025</div>
+          </div>
+        </div>
+      </div>
+      <div style="position: relative; align-self: center;">
+        <video class="feather-video" autoplay muted loop playsinline src="assets/campaign/video3_reveal.mp4" style="width: 114%; margin-left: -7%; aspect-ratio: 16 / 11;"></video>
+        <div class="vid-tag" style="right: 3%; top: 5%; transform: rotate(2deg);">the reveal · AI motion · spec</div>
+        <div style="position: absolute; left: -16px; bottom: -18px; transform: rotate(-3deg); background: var(--ink); color: var(--lime); border-radius: 14px; padding: 14px 18px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; line-height: 1.35; max-width: 250px; box-shadow: 0 14px 28px -12px rgba(17,38,28,0.6);">"37 tabs open at once" — the whole brand in five words</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ WHAT THE LAUNCH GOT RIGHT ═══════════ -->
+  <section class="band-wrap">
+    <div class="band">
+      <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 50% 60% at 92% 4%, rgba(214,255,61,0.13), transparent 60%);"></div>
+      <div class="particles" aria-hidden="true">
+        <div class="particle" style="top:10%;left:90%;animation-duration:8s;animation-delay:0.4s;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 2 L13.8 9.5 L21 11 L13.8 12.5 L12 22 L10.2 12.5 L3 11 L10.2 9.5 Z" fill="#D6FF3D" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="particle" style="top:72%;left:4%;animation-duration:9s;animation-delay:1.6s;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.4-7 10-7 10z" fill="#3DD6C4" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="wins-head" style="display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 44px; align-items: center; margin-bottom: 46px; position: relative;">
+        <div>
+          <div class="kicker" style="color: var(--lime);">02 · My operator's read</div>
+          <h2 class="sec-title">The launch was <span class="serif" style="color: var(--mint);">surgical.</span></h2>
+          <p style="color: var(--fog); font-size: 16.5px; line-height: 1.65; margin: 0;">Watching how they launched was the part that made me take this seriously. No media buy. No acquisition funnel. Four moves that only land if you actually understand where your customer is on a Tuesday in May — and what she needs right then.</p>
+          <div class="src-cap dk">Sell-out &amp; activations: PR Newswire, Apr 2026 · brand reporting: Glossy, 2026</div>
+        </div>
+        <div style="position: relative;">
+          <video class="feather-video" autoplay muted loop playsinline src="assets/campaign/video4_fruity.mp4" style="width: 118%; margin-left: -9%; aspect-ratio: 16 / 10; mask-image: radial-gradient(ellipse 58% 56% at 50% 50%, #000 30%, transparent 86%); -webkit-mask-image: radial-gradient(ellipse 58% 56% at 50% 50%, #000 30%, transparent 86%);"></video>
+          <div style="position: absolute; left: 50%; bottom: 4%; transform: translateX(-50%) rotate(-1.5deg); white-space: nowrap; background: rgba(214,255,61,0.12); border: 1px solid rgba(214,255,61,0.4); color: var(--lime); border-radius: 999px; padding: 7px 14px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;">flavors picked with the community · AI motion</div>
+        </div>
+      </div>
+      <div class="two-col" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; position: relative;">
+        <div class="win-card">
+          <div class="move">Move 01 · Proven operators</div>
+          <h3>A team that has scaled consumer before</h3>
+          <p>The founding team built Tarte from a one-bedroom apartment to a Kosé majority acquisition and $105M+ in TikTok Shop revenue. That track record is execution evidence, not a crutch — it de-risks the bet and signals the brand values a real operational playbook. Finnsul gets the experience without the corporate weight.</p>
+          <div class="src-cap dk">Glossy, Mar 2025 · Kosé 93.5% stake, 2014</div>
+        </div>
+        <div class="win-card">
+          <div class="move">Move 02 · Moment-matched seeding</div>
+          <h3>Dorm rooms during finals week</h3>
+          <p>Curated care kits landing with students at peak overwhelm — the product meeting its exact use case at its exact moment of need. Seeding aimed at a calendar, not just a follower count. Gen Z and millennials already drive 41%+ of US wellness spend; this put the product directly in their hands.</p>
+          <div class="src-cap dk">Wellness spend: McKinsey Future of Wellness, 2025</div>
+        </div>
+        <div class="win-card">
+          <div class="move">Move 03 · Adjacent-community bet</div>
+          <h3>A focus drink for focus culture</h3>
+          <p>Instead of fighting the crowded fitness aisle, Finnsul seeded readers, students, and deep-work communities — places where focus is the identity. In a nootropics market projected to more than double to $14.8B by 2034, that's the white-space move nobody else in hydration made.</p>
+          <div class="src-cap dk">Fortune Business Insights, 2025</div>
+        </div>
+        <div class="win-card">
+          <div class="move">Move 04 · Community as R&amp;D</div>
+          <h3>Crowdsourcing the roadmap</h3>
+          <p>Flavors, merch, bottle colors — decided with the community, not for it. A Camp Poosh Sip Session and a multi-city Confidence Tour through Ulta stores turn buyers into co-authors. Retention by ownership, not by discount code.</p>
+          <div class="src-cap dk">PR Newswire, Apr 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ THE NEXT TIER ═══════════ -->
+  <section id="nexttier" class="sec">
+    <div class="opp-sticky-grid" style="display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: start;">
+      <div class="sticky-col" style="position: sticky; top: 100px;">
+        <div class="kicker" style="color: var(--green);">03 · What I see coming</div>
+        <h2 class="sec-title" style="color: var(--ink);">Five things <span class="serif" style="color: var(--green);">worth moving on.</span></h2>
+        <p style="color: var(--body); font-size: 16px; line-height: 1.7; margin: 0 0 22px; max-width: 460px;">My honest read on where Finnsul is and what compounds it. Five places where the market is already leaning toward them — all they need is the process to lean back. Each one sized with a real number so this isn't just a thought exercise.</p>
+        <div class="tilt-img" style="position: relative; transform: rotate(-1.5deg); max-width: 420px;">
+          <div style="border-radius: 18px; padding: 24px 24px 20px; background: linear-gradient(158deg, rgba(20,46,34,0.96), rgba(13,30,23,0.96)); border: 1px solid rgba(214,255,61,0.22); box-shadow: 0 30px 60px -24px rgba(0,0,0,0.5);">
+            <div style="display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #9DE8C8; margin-bottom: 16px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2 L13.8 9.5 L21 11 L13.8 12.5 L12 22 L10.2 12.5 L3 11 L10.2 9.5 Z" fill="#D6FF3D" stroke="#0E2018" stroke-width="1.4" stroke-linejoin="round"/></svg>
+              the customer's desk — and the next ops desk
+            </div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 24px; line-height: 1.32; color: #F4F6F1;">"Five open doors — one missing hinge: the operating system to walk through them."</div>
+            <div style="margin-top: 20px; display: flex; gap: 26px;">
+              <div><div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:30px; color:#D6FF3D; line-height:1;">5</div><div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#9FAEB6; margin-top:6px;">moves sized</div></div>
+              <div><div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:30px; color:#3DD6C4; line-height:1;">1</div><div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#9FAEB6; margin-top:6px;">ops backbone</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display: grid; gap: 14px;">
+        <div class="opp-card">
+          <div class="letter">a</div>
+          <div>
+            <h3>An owned-audience flywheel, ready to spin</h3>
+            <p>Founder channels (~570K TikTok, ~288K Instagram) and a 4.97★ product have already proved demand. The compounding move is converting that reach into email, SMS, and subscription lists the brand owns outright — DTC subscribers are worth roughly <strong>3–5× a one-time buyer</strong>, and Finnsul's subscription-first pricing is purpose-built for the conversion.</p>
+            <div class="src-cap">LTV multiple: Recharge / Eightx DTC benchmarks, 2026 · follower counts: TikTok &amp; Instagram, Jun 2026</div>
+          </div>
+        </div>
+        <div class="opp-card">
+          <div class="letter">b</div>
+          <div>
+            <h3>Sell-outs are bankable demand</h3>
+            <p>At the time of this study, one-time-purchase packs were sold out on finnsul.com — in a category growing ~20% a year, every out-of-stock week is measurable revenue waiting to be captured. A staged fulfillment plan (garage workflow documented as the gold standard, hybrid 3PL at volume thresholds) converts viral spikes into shipped orders without losing the hand-packed charm.</p>
+            <div class="src-cap">finnsul.com, Jun 2026 · category growth: Circana, 2025</div>
+          </div>
+        </div>
+        <div class="opp-card">
+          <div class="letter">c</div>
+          <div>
+            <h3>Retail shelves are expanding toward this exact product</h3>
+            <p>Ulta opened dedicated "Wellness by Ulta Beauty" boutiques in January 2026 — 58 brands, with Nutrition &amp; Supplements as a core pillar — and Bloom Nutrition rode the same social-native path to <strong>15,000+ retail doors and $175M in revenue within four years</strong>. The collab already put Finnsul on Ulta's site; a forecast-and-compliance-ready ops stack is what turns the standalone-shelf conversation into a yes.</p>
+            <div class="src-cap">WWD / BeautyMatter, Jan 2026 · Bloom: Inc. &amp; Nutrabolt, 2024–25</div>
+          </div>
+        </div>
+        <div class="opp-card">
+          <div class="letter">d</div>
+          <div>
+            <h3>Community is the growth engine the data says to back</h3>
+            <p>Insurgent brands captured roughly <strong>36% of all FMCG category growth in 2025</strong> while holding under 2% share — almost entirely through community-driven volume. Camp Poosh and the Confidence Tour are exactly that motion. Event playbooks and a community CRM let ten events become fifty with the same handmade feel.</p>
+            <div class="src-cap">Bain &amp; Company, Insurgent Brands snap chart, 2026</div>
+          </div>
+        </div>
+        <div class="opp-card">
+          <div class="letter">e</div>
+          <div>
+            <h3>One dashboard compounds every other opportunity</h3>
+            <p>TikTok Shop's US GMV hit <strong>$15.1B in 2025, up 68% year over year</strong> — and Finnsul now sells across DTC, TikTok Shop, and collab retail. A single weekly heartbeat (velocity, inventory cover, CAC, subscription health) plus AI-assisted forecasting — shown to cut forecast error 20–50% — turns multi-channel speed into a durable advantage. Fittingly, the brand for 37 tabs gets its ops in one.</p>
+            <div class="src-cap">TikTok Shop GMV: DealStreetAsia, Jan 2026 · forecasting: McKinsey &amp; Company</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ BLUEPRINT ═══════════ -->
+  <section id="blueprint" class="band-wrap">
+    <div class="band">
+      <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 45% 55% at 6% 0%, rgba(61,214,196,0.12), transparent 60%), radial-gradient(ellipse 40% 50% at 96% 100%, rgba(214,255,61,0.1), transparent 60%);"></div>
+      <div class="particles" aria-hidden="true">
+        <div class="particle" style="top:14%;left:92%;animation-duration:7.5s;animation-delay:0.8s;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2 L22 12 L12 22 L2 12 Z" fill="#FFC83D" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="particle" style="top:80%;left:5%;animation-duration:8.5s;animation-delay:1.9s;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2 L13.8 9.5 L21 11 L13.8 12.5 L12 22 L10.2 12.5 L3 11 L10.2 9.5 Z" fill="#D6FF3D" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div class="blueprint-head" style="display: grid; grid-template-columns: 1fr minmax(220px, 280px); gap: 44px; align-items: center; margin-bottom: 46px; position: relative;">
+        <div style="max-width: 800px;">
+          <div class="kicker" style="color: var(--lime);">04 · What I'd actually do</div>
+          <h2 class="sec-title" style="font-size: clamp(34px, 4.6vw, 62px);">Four pillars, <span class="serif" style="color: var(--mint);">each with an AI lever.</span></h2>
+          <p style="color: var(--fog); font-size: 16.5px; line-height: 1.65; margin: 0;">I don't pitch ideas I can't scope. This is 90 days of real work — sized for a bootstrapped family team of three, not an enterprise with a budget. Process first. Automation second. The humans keep doing the parts that made people love the brand; the system handles the repetitive 80%. (71% of CPG companies already use AI in at least one function — the edge is applying it with discipline, not just adopting it.)</p>
+          <div class="src-cap dk">AI adoption: McKinsey, 2024 survey of CPG leaders</div>
+        </div>
+        <div style="position: relative; transform: rotate(2.5deg);">
+          <div style="border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px -24px rgba(0,0,0,0.6); border: 1px solid rgba(214,255,61,0.22); background: linear-gradient(155deg, rgba(20,46,34,0.95), rgba(13,30,23,0.96)); padding: 22px 22px 24px;">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#D6FF3D; margin-bottom:18px;">scope at a glance</div>
+            <div style="display:grid; gap:15px;">
+              <div style="display:flex; align-items:baseline; gap:12px;"><span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:26px; color:#F4F6F1; line-height:1; min-width:54px;">90</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:#9FAEB6;">days, not a 12-month roadmap</span></div>
+              <div style="display:flex; align-items:baseline; gap:12px;"><span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:26px; color:#3DD6C4; line-height:1; min-width:54px;">3</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:#9FAEB6;">person family team, scoped for</span></div>
+              <div style="display:flex; align-items:baseline; gap:12px;"><span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:26px; color:#D6FF3D; line-height:1; min-width:54px;">4</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:#9FAEB6;">pillars, each with an AI lever</span></div>
+              <div style="display:flex; align-items:baseline; gap:12px;"><span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:26px; color:#9DE8C8; line-height:1; min-width:54px;">80%</span><span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:#9FAEB6;">of the repetitive work, automated</span></div>
+            </div>
+          </div>
+          <div style="position: absolute; left: 50%; bottom: -12px; transform: translateX(-50%) rotate(-2deg); white-space: nowrap; background: rgba(17,38,28,0.92); border: 1px solid rgba(214,255,61,0.3); color: #D8EBD2; border-radius: 999px; padding: 7px 13px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;">process first · automation second</div>
+        </div>
+      </div>
+      <div class="pillar-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; position: relative;">
+        <div class="pillar">
+          <div class="ph"><div class="pnum">P1</div><h3>Demand &amp; inventory engine</h3></div>
+          <p>Weekly velocity tracking per flavor and channel, days-of-cover targets, reorder points tied to supplier lead times, and a surge buffer policy for viral moments and holiday spikes — so sell-outs become a pricing choice, not a surprise.</p>
+          <div class="lever"><strong>AI lever</strong> — demand sensing from social signal velocity: when a video starts moving, the draft PO is ready before the spike lands. AI-driven forecasting cuts error 20–50% and lost sales by up to 65% (McKinsey).</div>
+        </div>
+        <div class="pillar">
+          <div class="ph"><div class="pnum">P2</div><h3>Fulfillment &amp; retail readiness</h3></div>
+          <p>Document the garage workflow as the gold standard, then a staged 3PL plan that kicks in at volume thresholds. Build the retailer compliance binder — COAs, certifications, EDI readiness — before the next retail call, not after.</p>
+          <div class="lever"><strong>AI lever</strong> — auto-drafted SOPs from recorded walkthroughs, and a compliance-doc checklist agent that tracks expiry dates and renewal windows.</div>
+        </div>
+        <div class="pillar">
+          <div class="ph"><div class="pnum">P3</div><h3>Community ops engine</h3></div>
+          <p>Turn the magic into repeatable playbooks: a seeding-kit pipeline with stages and owners, an event-logistics template (venue, stock, staffing, follow-up), and a creator/community CRM that remembers every relationship.</p>
+          <div class="lever"><strong>AI lever</strong> — personalization at scale: drafted kit notes and follow-ups that sound handwritten, because the data behind them actually is personal.</div>
+        </div>
+        <div class="pillar">
+          <div class="ph"><div class="pnum">P4</div><h3>One-tab data backbone</h3></div>
+          <p>A single weekly heartbeat: DTC velocity, inventory cover, subscription health, CAC by channel, retail sell-through. One page, every Monday, no tab-hunting. Decisions get faster because the facts show up on time.</p>
+          <div class="lever"><strong>AI lever</strong> — the weekly digest writes itself: anomalies flagged, trends summarized, and "what changed and why" in plain language.</div>
+        </div>
+      </div>
+      <div class="phase-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; position: relative;">
+        <div class="phase">
+          <div class="ph-k">Days 1–30 · Listen &amp; map</div>
+          <p>Shadow every workflow as it actually happens. Map the order-to-door journey, the event pipeline, the data sources. Change nothing yet — earn the map.</p>
+        </div>
+        <div class="phase">
+          <div class="ph-k">Days 31–60 · Systemize</div>
+          <p>SOPs for the top five workflows, reorder points live, the compliance binder started, the weekly heartbeat shipping every Monday — manually at first, on purpose.</p>
+        </div>
+        <div class="phase">
+          <div class="ph-k">Days 61–90 · Automate</div>
+          <p>Automate what the SOPs proved: the digest writes itself, the kit pipeline tracks itself, the PO drafts itself. Humans approve; the system remembers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CAMPAIGN ═══════════ -->
+  <section id="campaign" class="sec">
+    <div style="max-width: 800px; margin-bottom: 44px;">
+      <div class="kicker" style="color: var(--green);">05 · Something I made because I wanted to</div>
+      <h2 class="sec-title" style="color: var(--ink);">"Find Your <span class="serif" style="color: var(--green);">Focus."</span></h2>
+      <p style="color: var(--body); font-size: 16.5px; line-height: 1.65; margin: 0;">I didn't need to make this. But I wanted to see what the brand could look like in motion — so I concepted, art-directed, and generated a full spec campaign in an afternoon with AI tools. Stills and motion, in Finnsul's world. Zero production cost. An ops hire who can also make content is two hires in one.</p>
+    </div>
+    <div class="campaign-grid" style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px;">
+      <div style="grid-column: span 5; position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 26px 52px -24px rgba(17,38,28,0.45); background: #11261C;">
+        <video autoplay muted loop playsinline style="display: block; width: 100%; height: 100%; min-height: 480px; object-fit: cover;" src="assets/campaign/video2_goldenhour.mp4"></video>
+        <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 20px; box-shadow: inset 0 0 70px 26px rgba(17,38,28,0.85);"></div>
+        <div class="vid-tag" style="left: 14px; bottom: 14px;">tiktok spot · 9:16 · AI motion</div>
+      </div>
+      <div style="grid-column: span 7; display: grid; gap: 16px;">
+        <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 26px 52px -24px rgba(17,38,28,0.45); background: #11261C;">
+          <video autoplay muted loop playsinline style="display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 9;" src="assets/campaign/video5_athlete.mp4"></video>
+          <div style="position: absolute; inset: 0; pointer-events: none; border-radius: 20px; box-shadow: inset 0 0 70px 26px rgba(17,38,28,0.85);"></div>
+          <div class="vid-tag" style="left: 14px; bottom: 14px;">athlete cut · 16:9 · AI motion</div>
+        </div>
+        <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 26px 52px -24px rgba(17,38,28,0.45);">
+          <video autoplay muted loop playsinline src="assets/campaign/video8_montage.mp4" style="display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 6.5;"></video>
+          <div class="vid-tag" style="left: 14px; bottom: 14px;">campaign montage · "find your focus"</div>
+        </div>
+      </div>
+    </div>
+    <div class="mono" style="margin-top: 18px; font-size: 11px; letter-spacing: 0.08em; color: var(--mute);">concept, art direction &amp; prompts: mine · generated with Higgsfield + Veo · spec work, no Finnsul assets used</div>
+  </section>
+
+  <!-- ═══════════ PROTOTYPE ═══════════ -->
+  <section id="prototype" style="padding: 100px 4vw 110px; background: var(--deep); position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 50% at 8% 0%, rgba(61,214,196,0.1), transparent 60%), radial-gradient(ellipse 40% 45% at 95% 100%, rgba(214,255,61,0.08), transparent 60%);"></div>
+    <div class="particles" aria-hidden="true">
+      <div class="particle" style="top:8%;left:8%;animation-duration:8s;animation-delay:0.2s;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2 L13.8 9.5 L21 11 L13.8 12.5 L12 22 L10.2 12.5 L3 11 L10.2 9.5 Z" fill="#D6FF3D" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <div class="particle" style="top:16%;left:90%;animation-duration:9s;animation-delay:1.4s;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.4-7 10-7 10z" fill="#3DD6C4" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+    </div>
+    <div style="max-width: 800px; margin: 0 auto 44px; text-align: center; position: relative;">
+      <div class="kicker" style="color: var(--lime);">06 · I built the thing</div>
+      <h2 class="sec-title" style="font-size: clamp(34px, 4.6vw, 62px); color: #F4F6F1;">The Finnsul <span class="serif" style="color: var(--lime);">ops console.</span></h2>
+      <p style="color: #9FB5A8; font-size: 16.5px; line-height: 1.65; margin: 0;">This is what Monday morning would look like. I built the prototype so you don't have to take my word for any of it — click through the tabs. Numbers are illustrative; the structure is the actual proposal. The brand for 37 tabs deserves one tab that has everything.</p>
+    </div>
+
+    <div class="console">
+      <div class="console-head">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 34px; height: 34px; border-radius: 10px; background: var(--lime); display: grid; place-items: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 15px; color: var(--deep);">F</div>
+          <div>
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 15.5px; font-weight: 700; color: #F4F6F1; letter-spacing: -0.01em;">Finnsul Ops Console</div>
+            <div class="mono" style="font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #6F8A7B;">week 24 · mon jun 8, 2026 · illustrative data</div>
+          </div>
+        </div>
+        <div class="tabbar" role="tablist">
+          <button class="tabbtn active" data-tab="demand" role="tab" aria-selected="true">Demand &amp; Inventory</button>
+          <button class="tabbtn" data-tab="fulfillment" role="tab" aria-selected="false">Fulfillment &amp; Retail</button>
+          <button class="tabbtn" data-tab="community" role="tab" aria-selected="false">Community Ops</button>
+          <button class="tabbtn" data-tab="pulse" role="tab" aria-selected="false">Weekly Pulse</button>
+        </div>
+      </div>
+
+      <!-- TAB: Demand & Inventory -->
+      <div class="tabpanel active" id="tab-demand" role="tabpanel">
+        <div class="three-col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 16px;">
+          <div class="cs-card">
+            <div class="cs-lab" style="margin-bottom: 8px;">units / week · all channels</div>
+            <div class="cs-kpi"><span data-countup="4180" data-format="comma">4,180</span> <span style="font-size: 14px; color: var(--mint); font-weight: 600;">▲ 12% WoW</span></div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-lab" style="margin-bottom: 8px;">blended days of cover</div>
+            <div class="cs-kpi"><span data-countup="31">31</span> days <span style="font-size: 14px; color: var(--mint); font-weight: 600;">target ≥ 28</span></div>
+          </div>
+          <div style="background: rgba(194,73,29,0.14); border: 1px solid rgba(255,138,90,0.4); border-radius: 16px; padding: 20px;">
+            <div class="cs-lab" style="color: #FF9E6B; margin-bottom: 8px;">⚠ reorder trigger</div>
+            <div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700; color: #F4F6F1; line-height: 1.25;">Lemonade at 19 days cover — draft PO ready for approval</div>
+          </div>
+        </div>
+        <div class="two-col" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 14px;">
+          <div class="cs-card">
+            <div class="cs-lab">days of cover by flavor</div>
+            <div style="display: grid; gap: 12px;">
+              <div class="bar-row"><span style="font-size: 13px; color: #DCE8E0; font-weight: 500;">Lemonade</span><div class="bar-track"><div class="bar-fill" style="width: 38%; background: #FF9E6B;"></div></div><span class="mono" style="font-size: 11.5px; color: #FF9E6B; text-align: right;">19d</span></div>
+              <div class="bar-row"><span style="font-size: 13px; color: #DCE8E0; font-weight: 500;">Strawberry</span><div class="bar-track"><div class="bar-fill" style="width: 64%; background: #9DE8C8;"></div></div><span class="mono" style="font-size: 11.5px; color: #9DE8C8; text-align: right;">32d</span></div>
+              <div class="bar-row"><span style="font-size: 13px; color: #DCE8E0; font-weight: 500;">Passion fruit</span><div class="bar-track"><div class="bar-fill" style="width: 84%; background: #D6FF3D;"></div></div><span class="mono" style="font-size: 11.5px; color: #D6FF3D; text-align: right;">42d</span></div>
+              <div class="bar-row"><span style="font-size: 13px; color: #DCE8E0; font-weight: 500;">Caffeine-free</span><div class="bar-track"><div class="bar-fill" style="width: 58%; background: #9DE8C8;"></div></div><span class="mono" style="font-size: 11.5px; color: #9DE8C8; text-align: right;">29d</span></div>
+            </div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-lab">social demand signal · AI</div>
+            <div style="display: grid; gap: 11px;">
+              <div class="cs-row"><span style="color: #DCE8E0;">TikTok mention velocity</span><span class="mono" style="color: var(--lime); font-size: 11.5px;">▲ 3.1×</span></div>
+              <div class="cs-row"><span style="color: #DCE8E0;">"focus drink" search trend</span><span class="mono" style="color: var(--mint); font-size: 11.5px;">▲ 1.4×</span></div>
+              <div class="cs-row"><span style="color: #DCE8E0;">Creator post scheduled Thu</span><span class="mono" style="color: #FF9E6B; font-size: 11.5px;">surge likely</span></div>
+              <div style="font-size: 12.5px; line-height: 1.6; color: #9FB5A8; padding-top: 4px;">Forecast: +22% units next 14 days. Lemonade PO sized to cover the spike → <span style="color: var(--lime); font-weight: 600;">approve in Demand tab</span>.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Fulfillment & Retail -->
+      <div class="tabpanel" id="tab-fulfillment" role="tabpanel">
+        <div class="three-col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+          <div class="cs-card">
+            <div class="cs-lab">order pipeline · today</div>
+            <div style="display: grid; gap: 11px;">
+              <div class="cs-row"><span style="color: #DCE8E0;">New orders</span><span class="mono" style="color: #F4F6F1; font-size: 11.5px;">312</span></div>
+              <div class="cs-row"><span style="color: #DCE8E0;">Packed &amp; labeled</span><span class="mono" style="color: var(--mint); font-size: 11.5px;">268</span></div>
+              <div class="cs-row"><span style="color: #DCE8E0;">Shipped on time</span><span class="mono" style="color: var(--lime); font-size: 11.5px;">98.4%</span></div>
+              <div class="cs-row"><span style="color: #DCE8E0;">Surge buffer status</span><span class="mono" style="color: var(--mint); font-size: 11.5px;">armed</span></div>
+            </div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-lab">3PL readiness · staged plan</div>
+            <div style="display: grid; gap: 10px;">
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #DCE8E0;"><span style="width: 18px; height: 18px; border-radius: 6px; background: var(--lime); color: var(--deep); display: grid; place-items: center; font-size: 11px; font-weight: 700; flex-shrink: 0;">✓</span>Garage workflow documented as gold standard</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #DCE8E0;"><span style="width: 18px; height: 18px; border-radius: 6px; background: var(--lime); color: var(--deep); display: grid; place-items: center; font-size: 11px; font-weight: 700; flex-shrink: 0;">✓</span>Volume threshold defined: 6k units/wk</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #DCE8E0;"><span style="width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid #FF9E6B; color: #FF9E6B; display: grid; place-items: center; font-size: 10px; font-weight: 700; flex-shrink: 0; box-sizing: border-box;">…</span>3 candidate 3PLs scored on kit-assembly ability</div>
+              <div style="display: flex; gap: 10px; align-items: center; font-size: 13px; color: #9FB5A8;"><span style="width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid rgba(244,246,241,0.3); display: grid; place-items: center; flex-shrink: 0; box-sizing: border-box;"></span>Pilot: 20% of volume for 60 days</div>
+            </div>
+          </div>
+          <div class="cs-card">
+            <div class="cs-lab">retail compliance binder</div>
+            <div style="display: grid; gap: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px;"><span style="color: #DCE8E0;">COAs — current lots</span><span class="pillok ok">complete</span></div>
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px;"><span style="color: #DCE8E0;">Liability insurance cert</span><span class="pillok ok">complete</span></div>
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px;"><span style="color: #DCE8E0;">EDI / GS1 barcoding setup</span><span class="pillok warn">in progress</span></div>
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px;"><span style="color: #DCE8E0;">Retailer routing guides</span><span class="pillok warn">queued</span></div>
+              <div style="font-size: 12.5px; line-height: 1.6; color: #9FB5A8; padding-top: 4px;">AI agent watches expiry dates — nothing in this binder goes stale silently.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Community Ops -->
+      <div class="tabpanel" id="tab-community" role="tabpanel">
+        <div class="two-col" style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 14px;">
+          <div class="cs-card">
+            <div class="cs-lab">seeding-kit pipeline</div>
+            <div style="display: grid; gap: 10px;">
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; border-bottom: 1px dashed rgba(244,246,241,0.12); padding-bottom: 9px;"><span style="font-size: 13px; color: #DCE8E0;">Reader-community batch · 250 kits</span><span class="mono" style="font-size: 10px; color: #6F8A7B;">owner: ops</span><span class="pillok ok">shipped</span></div>
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; border-bottom: 1px dashed rgba(244,246,241,0.12); padding-bottom: 9px;"><span style="font-size: 13px; color: #DCE8E0;">Summer-finals dorm drop · 300 kits</span><span class="mono" style="font-size: 10px; color: #6F8A7B;">owner: ops</span><span class="pillok go">packing</span></div>
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; border-bottom: 1px dashed rgba(244,246,241,0.12); padding-bottom: 9px;"><span style="font-size: 13px; color: #DCE8E0;">Wellness-retreat hydration bar</span><span class="mono" style="font-size: 10px; color: #6F8A7B;">owner: events</span><span class="pillok warn">planning</span></div>
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center;"><span style="font-size: 13px; color: #DCE8E0;">Fall campus tour · 6 cities</span><span class="mono" style="font-size: 10px; color: #6F8A7B;">owner: ops</span><span class="pillok idle">scoping</span></div>
+            </div>
+          </div>
+          <div style="display: grid; gap: 14px;">
+            <div class="cs-card">
+              <div class="cs-lab" style="margin-bottom: 12px;">community CRM</div>
+              <div style="display: flex; gap: 24px; flex-wrap: wrap;">
+                <div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; font-weight: 700; color: #F4F6F1;"><span data-countup="412">412</span></div><div class="mono" style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #6F8A7B;">active relationships</div></div>
+                <div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; font-weight: 700; color: var(--mint);"><span data-countup="93" data-suffix="%">93%</span></div><div class="mono" style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #6F8A7B;">kits → posted content</div></div>
+                <div><div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; font-weight: 700; color: var(--lime);">48h</div><div class="mono" style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #6F8A7B;">follow-up SLA</div></div>
+              </div>
+            </div>
+            <div style="background: rgba(214,255,61,0.07); border: 1px solid rgba(214,255,61,0.25); border-radius: 16px; padding: 20px;">
+              <div class="mono" style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); margin-bottom: 10px;">AI drafts · awaiting human touch</div>
+              <p style="margin: 0; font-size: 13px; line-height: 1.65; color: #DCE8E0;">14 personalized kit notes drafted from CRM context — favorite flavor, last conversation, what they're studying. Review, warm up, send. Handwritten feel, system memory.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Weekly Pulse -->
+      <div class="tabpanel" id="tab-pulse" role="tabpanel">
+        <div class="two-col" style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 14px;">
+          <div class="cs-card">
+            <div class="cs-lab">weekly heartbeat · wk 24</div>
+            <div style="display: grid; gap: 11px;">
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: baseline; border-bottom: 1px dashed rgba(244,246,241,0.12); padding-bottom: 9px;"><span style="font-size: 13px; color: #DCE8E0;">DTC revenue</span><span class="mono" style="font-size: 12px; color: #F4F6F1;">$96.2k</span><span class="mono" style="font-size: 11px; color: var(--mint);">▲ 9%</span></div>
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: baseline; border-bottom: 1px dashed rgba(244,246,241,0.12); padding-bottom: 9px;"><span style="font-size: 13px; color: #DCE8E0;">Subscription share of orders</span><span class="mono" style="font-size: 12px; color: #F4F6F1;">34%</span><span class="mono" style="font-size: 11px; color: var(--mint);">▲ 3pts</span></div>
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: baseline; border-bottom: 1px dashed rgba(244,246,241,0.12); padding-bottom: 9px;"><span style="font-size: 13px; color: #DCE8E0;">Blended CAC</span><span class="mono" style="font-size: 12px; color: #F4F6F1;">$14.10</span><span class="mono" style="font-size: 11px; color: #FF9E6B;">▲ $1.20</span></div>
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: baseline; border-bottom: 1px dashed rgba(244,246,241,0.12); padding-bottom: 9px;"><span style="font-size: 13px; color: #DCE8E0;">Retail sell-through (kits)</span><span class="mono" style="font-size: 12px; color: #F4F6F1;">87%</span><span class="mono" style="font-size: 11px; color: var(--mint);">strong</span></div>
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: baseline;"><span style="font-size: 13px; color: #DCE8E0;">Repeat purchase rate · 60d</span><span class="mono" style="font-size: 12px; color: #F4F6F1;">41%</span><span class="mono" style="font-size: 11px; color: var(--mint);">▲ 2pts</span></div>
+            </div>
+          </div>
+          <div style="background: rgba(214,255,61,0.07); border: 1px solid rgba(214,255,61,0.25); border-radius: 16px; padding: 20px;">
+            <div class="mono" style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); margin-bottom: 12px;">monday digest · written by AI, signed by ops</div>
+            <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.7; color: #DCE8E0;">"Velocity up 12% on creator momentum; Lemonade will dip below cover target Thursday — PO drafted. CAC crept up $1.20 as the finals audience cooled; subscription share gained 3pts, which more than offsets it. One flag: retreat-bar stock isn't allocated yet. Decision needed by Wed."</p>
+            <div class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; color: #6F8A7B;">3 actions attached · 0 tabs harmed in the making of this digest</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ WHY ME / FIT ═══════════ -->
+  <section id="fit" style="padding: 100px 6vw 0; background: var(--cream);">
+    <div class="fit-grid" style="display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 56px; align-items: start; padding-bottom: 90px;">
+      <div>
+        <div class="kicker" style="color: var(--green);">07 · Why I'm not just another applicant</div>
+        <h2 class="sec-title" style="color: var(--ink);">I live the <span class="serif" style="color: var(--green);">37-tabs life.</span></h2>
+        <p style="color: var(--body); font-size: 16px; line-height: 1.7; margin: 0 0 18px;">That's not a cute line. It's the reason this brand caught my attention — and the actual resume underneath the table on the right.</p>
+        <p style="color: var(--body); font-size: 16px; line-height: 1.7; margin: 0 0 22px;">I've already done a version of this job. I built the operations backbone for a Denver healthcare services agency — 22 modules, trained 126 field staff, got to 100% adoption, zero support escalations. That was healthcare compliance, not CPG. Different industry, same work: map the chaos, write the process, train the people, automate the rest.</p>
+
+        <!-- Parcovo mascot as proof -->
+        <div style="display: flex; gap: 16px; align-items: center; background: rgba(17,38,28,0.06); border: 1px solid rgba(31,122,82,0.2); border-radius: 18px; padding: 18px 20px; margin-bottom: 22px;">
+          <img src="assets/campaign/parcovo-mascot.png" alt="PARCOVO mascot" style="width: 56px; height: 56px; object-fit: contain; flex-shrink: 0; border-radius: 10px;">
+          <div>
+            <div class="mono" style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 5px;">The proof — PARCOVO platform · Denver, CO</div>
+            <p style="margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--body);">I built this: a full HIPAA-compliant operations platform — client records, document versioning, compliance alerts, caregiver credentialing, audit logs — from scratch, for a team that had nothing before. Concept to shipped product.</p>
+          </div>
+        </div>
+
+        <p style="color: var(--body); font-size: 15px; line-height: 1.7; margin: 0 0 6px; font-style: italic;">A few open questions I'd want to ask in a real conversation:</p>
+        <ul style="margin: 0; padding-left: 20px; color: var(--mute); font-size: 14px; line-height: 1.85;">
+          <li>Is fulfillment still founder-packed from the garage, and at what weekly volume does that break?</li>
+          <li>What's the current subscription share of orders, and who owns churn today?</li>
+          <li>Which of the 37 data tabs (Shopify, TikTok Shop, retail sell-through) is the weekly source of truth?</li>
+        </ul>
+      </div>
+      <div style="display: grid; gap: 12px;">
+        <div class="fit-row">
+          <div class="need"><div class="fit-k" style="color: var(--ember);">You need</div><div style="font-size: 13.5px; line-height: 1.55; color: var(--ink); font-weight: 500;">Inventory, fulfillment &amp; vendor coordination</div></div>
+          <div class="bring"><div class="fit-k" style="color: var(--green);">I bring</div><div style="font-size: 13.5px; line-height: 1.55; color: var(--body);">Cross-border vehicle logistics — vendors, customs, deadlines in three languages</div></div>
+        </div>
+        <div class="fit-row">
+          <div class="need"><div class="fit-k" style="color: var(--ember);">You need</div><div style="font-size: 13.5px; line-height: 1.55; color: var(--ink); font-weight: 500;">Processes where none exist yet</div></div>
+          <div class="bring"><div class="fit-k" style="color: var(--green);">I bring</div><div style="font-size: 13.5px; line-height: 1.55; color: var(--body);">Built a healthcare agency's ops backbone from scratch — 22 modules, 100% adoption</div></div>
+        </div>
+        <div class="fit-row">
+          <div class="need"><div class="fit-k" style="color: var(--ember);">You need</div><div style="font-size: 13.5px; line-height: 1.55; color: var(--ink); font-weight: 500;">Reporting leadership can actually use</div></div>
+          <div class="bring"><div class="fit-k" style="color: var(--green);">I bring</div><div style="font-size: 13.5px; line-height: 1.55; color: var(--body);">Weekly KPI heartbeats for executives — plus SQL and dashboards to build them myself</div></div>
+        </div>
+        <div class="fit-row">
+          <div class="need"><div class="fit-k" style="color: var(--ember);">You need</div><div style="font-size: 13.5px; line-height: 1.55; color: var(--ink); font-weight: 500;">Scrappy energy that fits a family garage startup</div></div>
+          <div class="bring"><div class="fit-k" style="color: var(--green);">I bring</div><div style="font-size: 13.5px; line-height: 1.55; color: var(--body);">Crossed an ocean to start over twice — chaos is a feature, and I automate the boring parts</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════ CLOSING CTA ═══════════ -->
+    <div style="position: relative; background: linear-gradient(150deg, #11261C 0%, #0E2018 65%); border-radius: 32px 32px 0 0; padding: 80px 6vw 70px; text-align: center; color: #F4F6F1; overflow: hidden;">
+      <div style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 70% at 50% 0%, rgba(214,255,61,0.14), transparent 65%);"></div>
+      <div class="particles" aria-hidden="true">
+        <div class="particle" style="top:18%;left:10%;animation-duration:7.5s;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2 L13.8 9.5 L21 11 L13.8 12.5 L12 22 L10.2 12.5 L3 11 L10.2 9.5 Z" fill="#FFC83D" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="particle" style="top:26%;left:86%;animation-duration:9s;animation-delay:1.2s;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.4-7 10-7 10z" fill="#3DD6C4" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <div class="particle" style="top:70%;left:16%;animation-duration:6.5s;animation-delay:2s;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M12 2 L22 12 L12 22 L2 12 Z" fill="#D6FF3D" stroke="#0E2018" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      </div>
+      <div style="position: relative;">
+        <div style="position: relative; max-width: 860px; margin: -24px auto 20px;">
+          <video autoplay muted loop playsinline src="assets/campaign/video6_active.mp4" style="display: block; width: 100%; aspect-ratio: 21 / 8; object-fit: cover; opacity: 0.92; mask-image: radial-gradient(ellipse 54% 64% at 50% 50%, #000 26%, transparent 86%); -webkit-mask-image: radial-gradient(ellipse 54% 64% at 50% 50%, #000 26%, transparent 86%);"></video>
+          <div class="mono" style="position: absolute; left: 50%; bottom: -2px; transform: translateX(-50%); white-space: nowrap; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,246,241,0.55);">the community in motion · AI spec</div>
+        </div>
+        <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(34px, 4.6vw, 60px); letter-spacing: -0.04em; margin: 0 0 14px;">Let's write <span class="serif" style="color: var(--lime);">chapter two</span> together.</h2>
+        <p style="color: rgba(244,246,241,0.75); max-width: 520px; margin: 0 auto 30px; font-size: 16px; line-height: 1.65;">This study took me a weekend. Imagine ninety days.</p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a class="btn btn-lime" href="mailto:rn.zaya019@gmail.com">rn.zaya019@gmail.com</a>
+          <a class="btn btn-line" href="assets/Ariunzaya_Resume.pdf" target="_blank" rel="noreferrer">Resume ↓</a>
+          <a class="btn btn-line" href="index.html">← Back to portfolio</a>
+        </div>
+        <div class="mono" style="margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(244,246,241,0.12); font-size: 10.5px; letter-spacing: 0.06em; line-height: 1.8; color: rgba(244,246,241,0.45); max-width: 720px; margin-left: auto; margin-right: auto;">Independent spec work by Ariunzaya Baasanjargal · researched entirely from public sources, cited in-line · not affiliated with or endorsed by Finnsul · campaign visuals are AI-generated spec work using no Finnsul assets · prototype metrics are illustrative</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ── keep every video muted, looping, playing (periodic re-check) ── */
+  function fixVideos() {
+    document.querySelectorAll("video").forEach(function (v) {
+      v.muted = true;
+      v.loop = true;
+      if (v.paused) { v.play().catch(function () {}); }
+    });
+  }
+  fixVideos();
+  setInterval(fixVideos, 1500);
+
+  /* ── ops console tab switching ── */
+  var tabButtons = document.querySelectorAll(".tabbtn");
+  tabButtons.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      tabButtons.forEach(function (b) {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
+      document.querySelectorAll(".tabpanel").forEach(function (p) {
+        p.classList.remove("active");
+      });
+      var panel = document.getElementById("tab-" + btn.dataset.tab);
+      if (panel) { panel.classList.add("active"); }
+    });
+  });
+
+  /* ── count-up on scroll into view ── */
+  function animateCount(el) {
+    var target = parseFloat(el.dataset.countup);
+    var decimals = parseInt(el.dataset.decimals || "0", 10);
+    var prefix = el.dataset.prefix || "";
+    var suffix = el.dataset.suffix || "";
+    var useComma = el.dataset.format === "comma";
+    var t0 = null;
+    var dur = 1400;
+    function fmt(v) {
+      var s = v.toFixed(decimals);
+      if (useComma) { s = Number(s).toLocaleString("en-US"); }
+      return prefix + s + suffix;
+    }
+    function step(t) {
+      if (t0 === null) { t0 = t; }
+      var p = Math.min(1, (t - t0) / dur);
+      var ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(target * ease);
+      if (p < 1) { requestAnimationFrame(step); }
+    }
+    requestAnimationFrame(step);
+  }
+  var seen = new WeakSet();
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && !seen.has(e.target)) {
+        seen.add(e.target);
+        animateCount(e.target);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll("[data-countup]").forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>

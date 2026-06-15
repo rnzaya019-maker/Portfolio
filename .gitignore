@@ -25,3 +25,7 @@ dist-ssr
 
 # Local session context files (not for public repo)
 axiscare_case_study_context.md
+finnsul_research_notes.md
+
+# Claude Code local config
+.claude/
