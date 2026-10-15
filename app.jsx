@@ -89,6 +89,7 @@ function Nav() {
       <a href="#work">Work</a>
       <a href="#lab">Case Study Lab</a>
       <a className="fs-link" href="finnsul.html">Finnsul Study ↗</a>
+      <a className="fs-link" href="asi.html">ASI Study ↗</a>
       <a className="cta" href="#contact">Say hi</a>
     </nav>
   );
@@ -614,6 +615,52 @@ function CaseStudyLab() {
                 <div className="cap">spec campaign motion · "strawberry pour"</div>
               </div>
               <div className="dossier-sticker">motion + prototype inside →</div>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      {/* ASI Dental Specialties dossier */}
+      <a className="dossier-link" href="asi.html">
+        <div className="dossier-card">
+          <div className="dossier-inner">
+            <div>
+              <div className="dossier-badges">
+                <span className="badge-dossier">Dossier 002 · ASI Dental Specialties</span>
+                <span className="badge-prepared">Prepared for: ASI Dental Specialties</span>
+              </div>
+              <h3>Configure, confirm, handoff: rebuilding a quote flow</h3>
+              <p className="lede">
+                ASI's live quote tool is a blind lead form, fill it out, submit, and wait for a
+                reply. This prototype rebuilds it as a guided configurator for the Triton mobile
+                dental line that ends in a generated draft order a rep can act on immediately,
+                while the real price still routes to a person. Every product fact in it is pulled
+                from ASI's own published catalog, nothing invented.
+              </p>
+              <div className="dossier-points">
+                <div className="dossier-point">
+                  <Mascot type="sparkle" size={14} color="#FFC83D" stroke="#11261C" />
+                  <span><strong>A six-step configurator, not a lead form.</strong> Branching questions mirror what a rep would otherwise ask over several emails or faxes, ending in a review panel with a live completeness meter and a one-click PDF draft, reference number and real spec links included.</span>
+                </div>
+                <div className="dossier-point">
+                  <Mascot type="heart" size={14} color="#3DD6C4" stroke="#11261C" />
+                  <span><strong>International orders, built in from the start.</strong> ASI's own buyers'-terms page routes international quotes through manual email and fax. The configurator surfaces that as its own step, the same cross-border coordination behind 23 dealer clients at Autocom and customs documentation at Kaneyama.</span>
+                </div>
+                <div className="dossier-point">
+                  <Mascot type="diamond" size={13} color="#D6FF3D" stroke="#11261C" />
+                  <span><strong>Grounded in ASI's own data.</strong> Every spec, line, and catalogue card reads from ASI's published product pages, verified product by product, not generated from a prompt.</span>
+                </div>
+              </div>
+              <div className="dossier-cta">
+                Open the full prototype <span style={{ fontSize: 17 }}>→</span>
+              </div>
+            </div>
+            <div className="dossier-visual">
+              <div className="dossier-still">
+                <video autoPlay muted loop playsInline src="assets/asi/media/Voiceover-asi.mp4" />
+                <div className="cap">concept film · mobile dental system in the field</div>
+              </div>
+              <div className="dossier-sticker">configurator + PDF draft inside →</div>
             </div>
           </div>
         </div>
